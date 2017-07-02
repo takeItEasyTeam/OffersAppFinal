@@ -1,0 +1,31 @@
+doctype html
+head
+  title Bootstrap Example
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+.jumbotron
+  .container.text-center
+    h1 Online Store
+    p Mission, Vission & Values
+nav.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#') Logo
+    #myNavbar.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          a(href='/') Home
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='/login') Login
+        li
+          a(href='/register') Register
+
+block content

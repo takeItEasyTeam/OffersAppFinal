@@ -1,1 +1,19 @@
-h2 register
+extends layout
+
+block content
+    .col-md-5.col-md-offset-3
+        .panel.panel-default
+            .panel-heading Register
+            .panel-body
+                form(action="/register" method="post")
+                    .form-group
+                        label(class="control-label" for="registerUser") Username
+                        input(id="registerUser" name="username" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="registerPassword") Password
+                        input(id="registerPassword" name="password" class="form-control" type="password")
+                    .form-group
+                        label(class="control-label" for="repeatPassword") Password confirmation
+                        input(id="repeatPassword" class="form-control" type="password")
+                    .form-group
+                        button(id="btnRegister" type="submit" class="btn btn-info btn-block") Register

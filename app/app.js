@@ -11,6 +11,8 @@ module.exports = {
             .then(() => connect(config.connectionString))
             .then((db) => {
                 const data = initData(db);
+                
+                require('./auth')(app, data, 'Purple Unicorn');
 
                 require('./routers')(app, data);
 
