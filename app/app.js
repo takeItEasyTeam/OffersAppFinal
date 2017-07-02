@@ -1,5 +1,7 @@
 const { bootstrapApp } = require('./bootstrap');
 const { connect } = require('./db');
+const { initData } = require('./data');
+
 
 module.exports = {
     getApp(config){
@@ -8,11 +10,9 @@ module.exports = {
         return Promise.resolve()
             .then(() => connect(config.connectionString))
             .then((db) => {
-                // const data = initData(db);
+                const data = initData(db);
 
-                // require('./auth')(app, data, 'Purple Unicorn');
-
-                // routers.attachTo(app, data);
+                require('./routers')(app, data);
 
                 return app;
             });
