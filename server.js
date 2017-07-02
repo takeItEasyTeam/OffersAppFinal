@@ -1,6 +1,6 @@
 const { getApp } = require('./app/app');
 
-const port = 3000;
+const port = 3005;
 
 getApp({ connectionString: 'mongodb://localhost/todos' })
     .then((app) =>

@@ -2,9 +2,9 @@ const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
 
-module.exports = (app, { auth }, secret) => {
+module.exports = (app, { users}, secret) => {
     passport.use(new Strategy((username, password, done) => {
-        auth.findBy({ username: username })
+        users.findBy({ username: username })
             .then((user) => {
                 if (!user) {
                     return done(null,
@@ -35,7 +35,7 @@ module.exports = (app, { auth }, secret) => {
     });
 
     passport.deserializeUser((id, done) => {
-        auth.getById(id)
+            users.getById(id)
             .then((user) => {
                 done(null, user);
             }).catch(done);

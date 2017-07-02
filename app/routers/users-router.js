@@ -16,12 +16,12 @@ module.exports = function(app, data) {
         .get('/register', controller.getRegisterForm)
         .post('/register', (req, res) => {
                 const { username, password } = req.body;
-                return data.auth.create(username, password)
+                return data.users.create(username, password)
                     .then(() => {
                         res.redirect('/login');
                     });
             })
-        .post('/login', passport.authenticate('local',
+            .post('/login', passport.authenticate('local',
                 {
                     successRedirect: '/',
                     failureRedirect: '/login',
