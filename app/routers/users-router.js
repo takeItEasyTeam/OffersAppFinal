@@ -20,13 +20,18 @@ module.exports = function(app, data) {
                     .then(() => {
                         res.redirect('/login');
                     });
-            })
-            .post('/login', passport.authenticate('local',
+        })
+        .post('/login', passport.authenticate('local',
                 {
                     successRedirect: '/',
                     failureRedirect: '/login',
                     failureFlash: true,
                 })
-        );
+        )
+        .get('/logout', (req, res) => {
+                req.logout();
+                res.redirect('/');
+        });
+
     app.use('/', router);
 };

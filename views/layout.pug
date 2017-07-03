@@ -22,12 +22,16 @@ nav.navbar.navbar-inverse
       ul.nav.navbar-nav
         li
           a(href='/') Home
-        li
-          a(href='/createOffer') CreateOffer
+          if user
+            li
+              a(href='/createOffer') CreateOffer
       ul.nav.navbar-nav.navbar-right
-        li
-          a(href='/login') Login
-        li
-          a(href='/register') Register
-
+        if !user
+          li
+            a(href='/login') Login
+          li
+            a(href='/register') Register
+        if user
+          li
+            a(href='/logout') Logout
 block content
