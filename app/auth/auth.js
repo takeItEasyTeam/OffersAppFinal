@@ -2,7 +2,7 @@ const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
 
-module.exports = (app, { users}, secret) => {
+module.exports = (app, { users }, secret) => {
     passport.use(new Strategy((username, password, done) => {
         users.findBy({ username: username })
             .then((user) => {

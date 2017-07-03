@@ -8,6 +8,5 @@ module.exports = function(data) {
                     res.redirect('/');
                 });
         },
-        
     };
 };

@@ -9,8 +9,8 @@ module.exports = function(app, data) {
     const router = new Router();
 
     router
-        .get('/', function(req, res){
-            res.render('home-view')
+        .get('/', function(req, res) {
+            res.render('home-view');
         })
         .get('/login', controller.getLoginForm)
         .get('/register', controller.getRegisterForm)
@@ -27,10 +27,6 @@ module.exports = function(app, data) {
                     failureRedirect: '/login',
                     failureFlash: true,
                 })
-        )
-        
-
-
-
+        );
     app.use('/', router);
 };

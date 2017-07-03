@@ -6,6 +6,5 @@ module.exports = function(data) {
         getRegisterForm(req, res) {
             res.render('register-view');
         },
-        
     };
 };
