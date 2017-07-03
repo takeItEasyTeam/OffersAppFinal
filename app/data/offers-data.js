@@ -1,7 +1,7 @@
 const { ObjectID } = require('mongodb');
 
 const getData = (db) => {
-    const collection = db.collection('todos');
+    const collection = db.collection('offers');
     return {
         create(text) {
             const todo = {

@@ -2,7 +2,7 @@ const { getApp } = require('./app/app');
 
 const port = 3005;
 
-getApp({ connectionString: 'mongodb://localhost/todos' })
+getApp({ connectionString: 'mongodb://localhost/OffersDB' })
     .then((app) =>
         app.listen(port, () =>
             // eslint-disable-next-line no-console
