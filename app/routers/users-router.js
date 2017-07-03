@@ -11,13 +11,7 @@ module.exports = function(app, data) {
     router
         .get('/login', controller.getLoginForm)
         .get('/register', controller.getRegisterForm)
-        .post('/register', (req, res) => {
-                const { username, password } = req.body;
-                return data.users.create(username, password)
-                    .then(() => {
-                        res.redirect('/login');
-                    });
-        })
+        .post('/register', controller.register)
         .post('/login', passport.authenticate('local',
                 {
                     successRedirect: '/',
@@ -25,10 +19,7 @@ module.exports = function(app, data) {
                     failureFlash: true,
                 })
         )
-        .get('/logout', (req, res) => {
-                req.logout();
-                res.redirect('/');
-        });
+        .get('/logout', controller.logout);
 
     app.use('/', router);
 };
