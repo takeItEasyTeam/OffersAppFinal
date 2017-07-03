@@ -8,15 +8,23 @@ module.exports = function(app, data) {
     const router = new Router();
 
     router
-        .get('/', (req, res) => {
-                return controller.getAll(req, res);
-            })
+        .get('/', controller.getAll)
+        .get('/mountain', function(req, res) {
+            res.render('mountain-view');
+        })
+        .get('/see', function(req, res) {
+            res.render('see-view');
+        })
+        .get('/spa', function(req, res) {
+            res.render('spa-view');
+        })
+        .get('/excursion', function(req, res) {
+            res.render('excursion-view');
+        })
         .get('/createOffer', function(req, res) {
             res.render('createOffer-view');
         })
-        .post('/createOffer', (req, res) => {
-                return controller.create(req, res);
-        });
+        .post('/createOffer', controller.create);
 
     app.use('/', router);
 };
