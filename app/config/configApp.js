@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // const flash = require('connect-flash');
 
-const bootstrapApp = () => {
+const configApp = () => {
     const app = express();
 
     app.set('view engine', 'pug');
@@ -19,5 +19,5 @@ const bootstrapApp = () => {
     return app;
 };
 
-module.exports = { bootstrapApp };
+module.exports = { configApp };
 

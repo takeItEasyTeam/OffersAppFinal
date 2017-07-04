@@ -1,11 +1,11 @@
-const { bootstrapApp } = require('./bootstrap');
+const { configApp } = require('./config/configApp');
 const { connect } = require('./db');
 const { initData } = require('./data');
 
 
 module.exports = {
     getApp(config) {
-        const app = bootstrapApp();
+        const app = configApp();
 
         return Promise.resolve()
             .then(() => connect(config.connectionString))
