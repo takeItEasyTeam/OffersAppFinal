@@ -4,7 +4,7 @@ const { Strategy } = require('passport-local');
 
 module.exports = (app, { users }, secret) => {
     passport.use(new Strategy((username, password, done) => {
-        users.findBy({ username: username })
+        users.findBy({ _username: username })
             .then((user) => {
                 if (!user) {
                     return done(null,
@@ -12,7 +12,7 @@ module.exports = (app, { users }, secret) => {
                         { message: 'Incorrect username.' });
                 }
 
-                if (user.password !== password) {
+                if (user._password !== password) {
                     return done(null,
                         false,
                         { message: 'Incorrect password.' });

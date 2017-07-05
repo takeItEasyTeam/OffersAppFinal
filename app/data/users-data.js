@@ -1,7 +1,9 @@
 const { ObjectID } = require('mongodb');
 
-const getData = (db) => {
+const getData = (db, models) => {
     const collection = db.collection('users');
+    const User = models.User;
+
     return {
         findBy(props) {
             return collection.findOne(props);
@@ -18,11 +20,7 @@ const getData = (db) => {
                 });
         },
         create(username, password) {
-            const user = {
-                username,
-                password,
-            };
-
+            const user = new User(username, password);
             return collection.insert(user)
                 .then((result) => {
                     return user;
