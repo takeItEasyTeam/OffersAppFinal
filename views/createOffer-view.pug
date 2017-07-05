@@ -1,7 +1,26 @@
 extends layout
 
 block content
-    form(action="/createOffer" method="POST")
-        input.form-control(name="text" placeholder="Enter text")
-        button.btn.btn-success
-            | Save
+    .col-md-5.col-md-offset-3
+        .panel.panel-primary
+            .panel-heading.text-center Create Offer
+            .panel-body
+                form(action="/createOffer" method="POST")
+                    .form-group
+                        label(for='destination') Дестинация
+                        select#sel1.form-control(name='destination')
+                            option Море
+                            option Планина
+                            option Екскурзия
+                            option СПА
+                    .form-group
+                        label(class="control-label" for="location") Местоположение
+                        input(id="location" name="location" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="validity") Валидност
+                        input(id="validity" name="validity" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="price") Цена на човек/ден
+                        input(id="price" name="price" class="form-control" type="text")
+                    .form-group
+                        button(id="btnRegister" type="submit" class="btn btn-primary btn-block") Create

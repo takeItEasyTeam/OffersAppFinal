@@ -1,9 +1,15 @@
 extends layout
 
 block content
-    ul
+    .container
+        .row
         for item in context
-            li= item.text
+            .col-sm-4
+                .panel.panel-primary
+                    .panel-heading= item.text.location
+                    .panel-body
+                     img.img-responsive(src='https://placehold.it/150x80?text=IMAGE', style='width:100%', alt='Image')
+                    .panel-footer Buy 50 mobiles and get a gift card
                 
 
 

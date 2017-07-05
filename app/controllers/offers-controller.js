@@ -11,7 +11,7 @@ module.exports = function(data) {
         create(req, res) {
             const offer = req.body;
 
-            return data.offers.create(offer.text)
+            return data.offers.create(offer)
                 .then((result) => {
                     res.redirect('/');
                 });
