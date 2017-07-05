@@ -1,46 +1,66 @@
 doctype html
-head
-  title Bootstrap Example
-  meta(charset='utf-8')
-  meta(name='viewport', content='width=device-width, initial-scale=1')
-  link(rel="stylesheet", href="/static/css/style.css")
-  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-.jumbotron
-  .container.text-center
-    h1 Online Store
-    p Mission, Vission & Values
-nav.navbar.navbar-inverse
-  .container-fluid
-    .navbar-header
-      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href='#') Logo
-    #myNavbar.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li
-          a(href='/') Всички оферти
-        li
-          a(href='/mountain') Планина
-        li
-          a(href='/see') Море
-        li
-          a(href='/spa') Спа
-        li
-          a(href='/excursion') Екскурзия
-            
-      ul.nav.navbar-nav.navbar-right
-        if !user
-          li
-            a(href='/login') Влез
-          li
-            a(href='/register') Регистрация
-        if user
-          li
-            a(href='/createOffer') Създай Оферта
-          li
-            a(href='/logout') Излез
-block content
+html(lang='en')
+  head
+    title Bootstrap Example
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    style.
+      /* Remove the navbar's default rounded borders and increase the bottom margin */
+      .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+      }
+      /* Remove the jumbotron's default bottom margin */
+      .jumbotron {
+      margin-bottom: 0;
+      }
+      /* Add a gray background color and some padding to the footer */
+      footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+      }
+  body
+    .jumbotron
+      .container.text-center
+        h1 Online Store
+        p Mission, Vission & Values
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#') Logo
+        #myNavbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/') Всички оферти
+            li
+              a(href='/see') Море
+            li
+              a(href='/mountain') Планина
+            li
+              a(href='/spa') Спа
+            li
+              a(href='/excursion') Екскурзия
+          ul.nav.navbar-nav.navbar-right
+            if !user
+              li
+                a(href='/login') Влез
+              li
+                a(href='/register') Регистрация
+            if user
+              li
+                a(href='/myProfile')
+                  span.glyphicon.glyphicon-user
+                  |  Профил
+              li
+                a(href='/createOffer') Създай Оферта
+              li
+                a(href='/logout') Излез
+    .container
+      block content
