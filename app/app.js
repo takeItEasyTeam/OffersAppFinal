@@ -4,11 +4,11 @@ const { initData } = require('./data');
 
 
 module.exports = {
-    getApp(config) {
+    getApp(connectionString) {
         const app = configApp();
 
         return Promise.resolve()
-            .then(() => connect(config.connectionString))
+            .then(() => connect(connectionString))
             .then((db) => {
                 const data = initData(db);
                 require('./auth')(app, data, 'Little secret');
