@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const passport = require('passport');
-
+const { ensureAuthenticated } = require('../utils/auth-validation')
 
 module.exports = function(app, data) {
     const controller = require('../controllers/offers-controller')(data);
@@ -21,7 +21,7 @@ module.exports = function(app, data) {
         .get('/excursion', function(req, res) {
             res.render('excursion-view');
         })
-        .get('/createOffer', function(req, res) {
+        .get('/createOffer', ensureAuthenticated, function(req, res) {
             res.render('createOffer-view');
         })
         .post('/createOffer', controller.create);

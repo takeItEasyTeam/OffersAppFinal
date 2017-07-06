@@ -1,7 +1,7 @@
 const { Router } = require('express');
 // const { getController } = require('./controller');
 const passport = require('passport');
-
+const { ensureAuthenticated } = require('../utils/auth-validation')
 
 module.exports = function(app, data) {
     const controller = require('../controllers/user-controller')(data);
@@ -19,7 +19,7 @@ module.exports = function(app, data) {
                     failureFlash: true,
                 })
         )
-        .get('/profile', controller.getMyProfile)
+        .get('/profile', ensureAuthenticated,controller.getMyProfile)
         .get('/logout', controller.logout);
 
     app.use('/', router);
