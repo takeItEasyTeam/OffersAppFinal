@@ -1,6 +1,6 @@
 const { ObjectID } = require('mongodb');
 
-const getData = (db, models) => {
+const getData = (db) => {
     const collection = db.collection('offers');
     return {
         getAll() {
