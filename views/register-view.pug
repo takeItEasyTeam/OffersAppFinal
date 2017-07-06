@@ -7,13 +7,19 @@ block content
             .panel-body
                 form(action="/register" method="post")
                     .form-group
-                        label(class="control-label" for="registerUser") Username
+                        label(class="control-label" for="realName") Name:
+                        input(id="realName" name="realName" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="registerUser") Username:
                         input(id="registerUser" name="username" class="form-control" type="text")
                     .form-group
-                        label(class="control-label" for="registerPassword") Password
+                        label(class="control-label" for="email") Email:
+                        input(id="emailr" name="email" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="registerPassword") Password:
                         input(id="registerPassword" name="password" class="form-control" type="password")
                     .form-group
-                        label(class="control-label" for="repeatPassword") Password confirmation
+                        label(class="control-label" for="repeatPassword") Password confirmation:
                         input(id="repeatPassword" class="form-control" type="password")
                     .form-group
                         button(id="btnRegister" type="submit" class="btn btn-success btn-block") Register

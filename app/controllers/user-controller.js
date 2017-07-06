@@ -6,6 +6,9 @@ module.exports = function(data) {
         getRegisterForm(req, res) {
             res.render('register-view');
         },
+        getMyProfile(req, res){
+            res.render('profile-view')
+        },
         register(req, res) {
             const { username, password } = req.body;
                 return data.users.create(username, password)

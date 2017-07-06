@@ -19,6 +19,7 @@ module.exports = function(app, data) {
                     failureFlash: true,
                 })
         )
+        .get('/profile', controller.getMyProfile)
         .get('/logout', controller.logout);
 
     app.use('/', router);
