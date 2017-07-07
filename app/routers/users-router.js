@@ -1,7 +1,7 @@
 const { Router } = require('express');
 // const { getController } = require('./controller');
 const passport = require('passport');
-const { ensureAuthenticated } = require('../utils/auth-validation')
+const { ensureAuthenticated, frontRegisterUserValidation} = require('../utils/auth-validation')
 
 module.exports = function(app, data) {
     const controller = require('../controllers/user-controller')(data);
@@ -11,7 +11,7 @@ module.exports = function(app, data) {
     router
         .get('/login', controller.getLoginForm)
         .get('/register', controller.getRegisterForm)
-        .post('/register', controller.register)
+        .post('/register', frontRegisterUserValidation, controller.register)
         .post('/login', passport.authenticate('local',
                 {
                     successRedirect: '/',
