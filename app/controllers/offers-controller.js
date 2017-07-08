@@ -34,6 +34,22 @@ module.exports = function (data) {
                     });
                 });
         },
+        getOfferDetails(req, res) {
+            return data.offers.getById(req.params.id)
+                .then((offer) => {
+                    if (!offer) {
+                        return res.redirect(404, '/offer/all');
+                    }
+
+                    return res.render('offerDetails-view', {
+                        context: offer,
+                    });
+                })
+                .catch((err) => {
+                    return res.redirect(404, '/offer/all');
+                });
+
+        },
         create(req, res) {
             const offer = req.body;
 

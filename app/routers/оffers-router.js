@@ -17,6 +17,7 @@ module.exports = function(app, data) {
         .get('/createOffer', ensureAuthenticated, function(req, res) {
             res.render('createOffer-view');
         })
+        .get('/:id', controller.getOfferDetails)
         .post('/createOffer', controller.create);
 
     app.use('/', router);

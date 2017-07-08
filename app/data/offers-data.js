@@ -16,13 +16,13 @@ const getData = (db) => {
         getById(id) {
             try {
                 return collection.findOne({ _id: new ObjectID(id) })
-                    .then((offer) => {
-                        if (!offer) {
+                    .then((todo) => {
+                        if (!todo) {
                             return null;
                         }
 
-                        offer.id = offer._id;
-                        return offer;
+                        todo.id = todo._id;
+                        return todo;
                     });
             } catch (err) {
                 return Promise.reject('Invalid id');

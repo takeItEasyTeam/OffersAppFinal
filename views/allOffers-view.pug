@@ -9,7 +9,11 @@ block content
                     .panel-body
                      img.img-responsive(src='https://placehold.it/150x80?text=IMAGE', style='width:100%', alt='Image')
                     .panel-footer
-                        p= item.price
+                        
+                        p Price: 
+                            =item.price
+                        li
+                            a(href="/" + item.id) Информация
                 
 
 
