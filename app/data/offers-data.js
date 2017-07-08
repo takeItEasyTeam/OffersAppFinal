@@ -28,12 +28,17 @@ const getData = (db) => {
                 return Promise.reject('Invalid id');
             }
         },
-        create(text) {
-            const offer = {
-                text,
-                isDone: false,
-            };
-
+        getByOfferType(offerType){
+            return collection.find({destination: offerType})
+                .toArray()
+                .then((offers) => {
+                    return offers.map((offer) => {
+                        offer.id = offer._id;
+                        return offer;
+                    });
+                });
+        },
+        create(offer) {
             return collection.insert(offer)
                 .then((result) => {
                     offer.id = offer._id;

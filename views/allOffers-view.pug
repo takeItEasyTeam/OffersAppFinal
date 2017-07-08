@@ -5,10 +5,11 @@ block content
         for item in context
             .col-sm-4
                 .panel.panel-primary
-                    .panel-heading= item.text.location
+                    .panel-heading= item.destination 
                     .panel-body
                      img.img-responsive(src='https://placehold.it/150x80?text=IMAGE', style='width:100%', alt='Image')
-                    .panel-footer Buy 50 mobiles and get a gift card
+                    .panel-footer
+                        p= item.price
                 
 
 

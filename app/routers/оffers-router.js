@@ -9,18 +9,11 @@ module.exports = function(app, data) {
 
     router
         .get('/', controller.getAll)
-        .get('/mountain', function(req, res) {
-            res.render('mountain-view');
-        })
-        .get('/see', function(req, res) {
-            res.render('see-view');
-        })
-        .get('/spa', function(req, res) {
-            res.render('spa-view');
-        })
-        .get('/excursion', function(req, res) {
-            res.render('excursion-view');
-        })
+        .get('/mountain', controller.getByOfferType)
+        .get('/see', controller.getByOfferType)
+        
+        .get('/spa', controller.getByOfferType)
+        .get('/excursion', controller.getByOfferType)
         .get('/createOffer', ensureAuthenticated, function(req, res) {
             res.render('createOffer-view');
         })
