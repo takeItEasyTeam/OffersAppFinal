@@ -52,7 +52,7 @@ module.exports = function (data) {
         },
         create(req, res) {
             const offer = req.body;
-
+            offer.author = req.user._id;
             return data.offers.create(offer)
                 .then((result) => {
                     res.redirect('/');

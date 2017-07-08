@@ -7,7 +7,14 @@ module.exports = function(data) {
             res.render('register-view');
         },
         getMyProfile(req, res){
-            res.render('profile-view')
+            let userId = req.user._id;
+
+            return data.users.getMyProfile(userId)
+                .then((offers) => {
+                    return res.render('profile-view', {
+                        context: offers,
+                    });
+                });
         },
         register(req, res) {
             const { username, password } = req.body;

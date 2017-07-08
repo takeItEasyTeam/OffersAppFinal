@@ -2,7 +2,7 @@ const { ObjectID } = require('mongodb');
 
 const getData = (db, models) => {
     const collection = db.collection('users');
-
+    const offersCollection = db.collection('offers')
     return {
         findBy(props) {
             return collection.findOne(props);
@@ -16,6 +16,16 @@ const getData = (db, models) => {
 
                     user.id = user._id;
                     return user;
+                });
+        },
+        getMyProfile(userId){
+            return offersCollection.find({author: userId})
+                .toArray()
+                .then((offers) => {
+                    return offers.map((offer) => {
+                        offer.id = offer._id;
+                        return offer;
+                    });
                 });
         },
         create(username, password) {
