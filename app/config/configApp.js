@@ -6,6 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+
 
 const configApp = () => {
     const app = express();
@@ -18,6 +20,12 @@ const configApp = () => {
     app.use(cookieParser());
     // app.use(flash());
 
+
+    app.use(require('connect-flash')());
+    app.use(function (req, res, next) {
+        res.locals.messages = require('express-messages')(req, res);
+        next();
+    });
 
     // Express Validator Middleware
     app.use(expressValidator({

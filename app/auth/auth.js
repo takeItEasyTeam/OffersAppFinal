@@ -53,10 +53,18 @@ module.exports = (app, { users }, secret) => {
                 done(null, user);
             }).catch(done);
     });
-    app.use((req, res, next) => {
-        res.locals = {
-            user: req.user,
-        };
+
+    /* problem with users and flash messages */
+    // app.use((req, res, next) => {
+    //     res.locals = {
+    //         user: req.user,
+    //     };
+    //     next();
+    // });
+
+
+    app.get('*', function (req, res, next) {
+        res.locals.user = req.user || null;
         next();
     });
 };
