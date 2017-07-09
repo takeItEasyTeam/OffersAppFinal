@@ -19,8 +19,10 @@ function frontRegisterUserValidation(req, res, next) {
 
   let errors = req.validationErrors();
 
-  if (errors) {
-    res.render('register-view')
+  if(errors){
+    res.render('register-view', {
+      errors:errors
+    });
   } else {
     return next()
   }

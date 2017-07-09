@@ -25,6 +25,7 @@ module.exports = function(data) {
                const username = req.body.username;
                return data.users.create(username, password)
                     .then(() => {
+                        req.flash('success','You are now registered and can log in');
                         res.redirect('/login');
                     });
             });
@@ -33,6 +34,7 @@ module.exports = function(data) {
         },
         logout(req, res) {
             req.logout();
+            req.flash('success', 'You are logged out');
             res.redirect('/');
         },
     };
