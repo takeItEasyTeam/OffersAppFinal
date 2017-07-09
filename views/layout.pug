@@ -22,15 +22,15 @@ html(lang='en')
           a.navbar-brand(href='#') Logo
         #myNavbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li
+            li.hvr-float-shadow
               a(href='/') Всички оферти
-            li
+            li.hvr-float-shadow
               a(href='/see') Море
-            li
+            li.hvr-float-shadow
               a(href='/mountain') Планина
-            li
+            li.hvr-float-shadow
               a(href='/spa') Спа
-            li
+            li.hvr-float-shadow
               a(href='/excursion') Екскурзия
 
           form.navbar-form.navbar-right(role='search')
@@ -41,18 +41,18 @@ html(lang='en')
                 span.glyphicon.glyphicon-search
           ul.nav.navbar-nav.navbar-right
             if !user
-              li
+              li.hvr-float-shadow
                 a(href='/login') Влез
-              li
+              li.hvr-float-shadow
                 a(href='/register') Регистрация
             if user
-              li
+              li.hvr-float-shadow
                 a(href='/profile')
                   span.glyphicon.glyphicon-user
                   |  Профил
-              li
+              li.hvr-float-shadow
                 a(href='/createOffer') Създай Оферта
-              li
+              li.hvr-float-shadow
                 a(href='/logout') Излез
     .container
       != messages('message', locals)
