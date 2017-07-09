@@ -63,8 +63,10 @@ module.exports = (app, { users }, secret) => {
     // });
 
 
-    app.get('*', function (req, res, next) {
-        res.locals.user = req.user || null;
+    app.use((req, res, next) => {
+        res.locals = res.locals || {};
+
+        res.locals.user = req.user;
         next();
     });
 };
