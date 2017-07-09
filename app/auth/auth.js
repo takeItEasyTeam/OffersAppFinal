@@ -1,6 +1,8 @@
 const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
+const bcrypt = require('bcryptjs');
+
 
 module.exports = (app, { users }, secret) => {
     passport.use(new Strategy((username, password, done) => {
@@ -12,13 +14,24 @@ module.exports = (app, { users }, secret) => {
                         { message: 'Incorrect username.' });
                 }
 
-                if (user.password !== password) {
-                    return done(null,
-                        false,
-                        { message: 'Incorrect password.' });
-                }
+                /* Hashpassword Match */
 
-                return done(null, user);
+                bcrypt.compare(password, user.password, function (err, isMatch) {
+                    if (err) throw err;
+                    if (isMatch) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false, { message: 'Wrong password' });
+                    }
+                });
+
+                // if (user.password !== password) {
+                //     return done(null,
+                //         false,
+                //         { message: 'Incorrect password.' });
+                // }
+
+                // return done(null, user);
             });
     }));
 
@@ -35,7 +48,7 @@ module.exports = (app, { users }, secret) => {
     });
 
     passport.deserializeUser((id, done) => {
-            users.getById(id)
+        users.getById(id)
             .then((user) => {
                 done(null, user);
             }).catch(done);

@@ -1,5 +1,6 @@
 const { ObjectID } = require('mongodb');
 
+
 const getData = (db, models) => {
     const collection = db.collection('users');
     const offersCollection = db.collection('offers')
@@ -18,8 +19,8 @@ const getData = (db, models) => {
                     return user;
                 });
         },
-        getMyProfile(userId){
-            return offersCollection.find({author: userId})
+        getMyProfile(userId) {
+            return offersCollection.find({ author: userId })
                 .toArray()
                 .then((offers) => {
                     return offers.map((offer) => {
@@ -29,11 +30,12 @@ const getData = (db, models) => {
                 });
         },
         create(username, password) {
+            
             const user = {
                 username,
                 password,
-            };
-
+            };            
+                        
             return collection.insert(user)
                 .then((result) => {
                     return user;
@@ -41,5 +43,7 @@ const getData = (db, models) => {
         },
     };
 };
+
+
 
 module.exports = { getData };

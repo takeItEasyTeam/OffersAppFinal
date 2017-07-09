@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 module.exports = function(data) {
     return {
         getLoginForm(req, res) {
@@ -17,11 +19,17 @@ module.exports = function(data) {
                 });
         },
         register(req, res) {
-            const { username, password } = req.body;
-                return data.users.create(username, password)
+            /* hash password */
+            bcrypt.hash(req.body.password, 10, function(err, hash) {
+               const password = hash;
+               const username = req.body.username;
+               return data.users.create(username, password)
                     .then(() => {
                         res.redirect('/login');
                     });
+            });
+            
+                
         },
         logout(req, res) {
             req.logout();
