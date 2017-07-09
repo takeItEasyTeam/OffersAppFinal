@@ -1,19 +1,23 @@
 extends layout
 
 block content
-    .row
-        for item in context
-            .col-sm-4
-                .panel.panel-primary
-                    .panel-heading= item.destination 
-                    .panel-body
-                     img.img-responsive(src='https://placehold.it/150x80?text=IMAGE', style='width:100%', alt='Image')
-                    .panel-footer
-                        
-                        p Price: 
-                            =item.price
-                        li
-                            a(href="/" + item.id) Информация
+
+  .row.text-center
+    for item in context
+      .col-md-3.col-sm-6.hero-feature
+        .thumbnail
+            img(src='http://placehold.it/800x500', alt='')
+            .caption
+                h3= item.destination
+                p Град:
+                    =item.city
+                p Цена:
+                    =item.price
+                p
+                  a.btn.btn-danger(href='#') Buy Now!
+                  a.btn.btn-primary(href="/" + item.id) More Info
+
+
                 
 
 
