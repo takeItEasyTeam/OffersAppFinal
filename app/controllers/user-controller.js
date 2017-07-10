@@ -8,8 +8,8 @@ module.exports = function(data) {
         getRegisterForm(req, res) {
             res.render('register-view');
         },
-        getMyProfile(req, res){
-            let userId = req.user._id;
+        getMyProfile(req, res) {
+            const userId = req.user._id;
 
             return data.users.getMyProfile(userId)
                 .then((offers) => {
@@ -25,12 +25,10 @@ module.exports = function(data) {
                const username = req.body.username;
                return data.users.create(username, password)
                     .then(() => {
-                        req.flash('success','You are now registered and can log in');
+                        req.flash('success', 'You are now registered and can log in');
                         res.redirect('/login');
-                    });
-            });
-            
-                
+                });
+            });     
         },
         logout(req, res) {
             req.logout();

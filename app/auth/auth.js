@@ -16,7 +16,7 @@ module.exports = (app, { users }, secret) => {
 
                 /* Hashpassword Match */
 
-                bcrypt.compare(password, user.password, function (err, isMatch) {
+                bcrypt.compare(password, user.password, function(err, isMatch) {
                     if (err) throw err;
                     if (isMatch) {
                         return done(null, user);

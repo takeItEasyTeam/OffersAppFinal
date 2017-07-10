@@ -11,7 +11,6 @@ module.exports = function(app, data) {
         .get('/', controller.getAll)
         .get('/mountain', controller.getByOfferType)
         .get('/see', controller.getByOfferType)
-        
         .get('/spa', controller.getByOfferType)
         .get('/excursion', controller.getByOfferType)
         .get('/createOffer', ensureAuthenticated, function(req, res) {

@@ -29,13 +29,11 @@ const getData = (db, models) => {
                     });
                 });
         },
-        create(username, password) {
-            
+        create(username, password) {   
             const user = {
                 username,
                 password,
-            };            
-                        
+            };                              
             return collection.insert(user)
                 .then((result) => {
                     return user;
@@ -43,7 +41,4 @@ const getData = (db, models) => {
         },
     };
 };
-
-
-
 module.exports = { getData };

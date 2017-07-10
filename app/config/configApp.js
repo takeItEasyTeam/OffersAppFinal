@@ -22,17 +22,17 @@ const configApp = () => {
 
 
     app.use(require('connect-flash')());
-    app.use(function (req, res, next) {
+    app.use(function(req, res, next) {
         res.locals.messages = require('express-messages')(req, res);
         next();
     });
 
     // Express Validator Middleware
     app.use(expressValidator({
-        errorFormatter: function (param, msg, value) {
-            var namespace = param.split('.')
-                , root = namespace.shift()
-                , formParam = root;
+        errorFormatter: function(param, msg, value) {
+            var namespace = param.split('.'),
+                root = namespace.shift(),
+                formParam = root;
 
             while (namespace.length) {
                 formParam += '[' + namespace.shift() + ']';
@@ -40,9 +40,9 @@ const configApp = () => {
             return {
                 param: formParam,
                 msg: msg,
-                value: value
+                value: value,
             };
-        }
+        },
     }));
 
     return app;

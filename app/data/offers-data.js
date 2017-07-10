@@ -28,8 +28,8 @@ const getData = (db) => {
                 return Promise.reject('Invalid id');
             }
         },
-        getByOfferType(offerType){
-            return collection.find({destination: offerType})
+        getByOfferType(offerType) {
+            return collection.find({ destination: offerType })
                 .toArray()
                 .then((offers) => {
                     return offers.map((offer) => {
@@ -39,7 +39,7 @@ const getData = (db) => {
                 });
         },
         edit(offer, query) {
-            return collection.updateOne({_id: new ObjectID(query)},offer)
+            return collection.updateOne( { _id: new ObjectID(query) }, offer)
                 .then((result) => {
                     offer.id = offer._id;
                     return offer;
@@ -50,8 +50,7 @@ const getData = (db) => {
                 .then((result) => {
                     offer.id = offer._id;
                     return offer;
-                })
-                .catch((error) => done(error, null));
+                });
         },
     };
 };

@@ -1,4 +1,4 @@
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         getAll(req, res) {
             return data.offers.getAll()
@@ -13,18 +13,18 @@ module.exports = function (data) {
 
             switch (req.path) {
                 case '/see':
-                    offerType = 'Море'
+                    offerType = 'Море';
                     break;
                 case '/mountain':
-                    offerType = 'Планина'
+                    offerType = 'Планина';
                     break;
                 case '/spa':
-                    offerType = 'СПА'
+                    offerType = 'СПА';
                     break;
                 case '/excursion':
-                    offerType = 'Екскурзия'
+                    offerType = 'Екскурзия';
                     break;
-                default: break
+                default: break;
             }
 
             return data.offers.getByOfferType(offerType)
@@ -48,7 +48,6 @@ module.exports = function (data) {
                 .catch((err) => {
                     return res.redirect(404, '/offer/all');
                 });
-
         },
         getOfferEdit(req, res) {
             return data.offers.getById(req.params.id)
@@ -64,14 +63,11 @@ module.exports = function (data) {
                 .catch((err) => {
                     return res.redirect(404, '/offer/all');
                 });
-
         },
         edit(req, res) {
-
-            let offer = req.body;
+            const offer = req.body;
             offer.author = req.user._id;
-            let query = req.params.id;
-            
+            const query = req.params.id;            
             return data.offers.edit(offer, query)
                 .then((result) => {
                     res.redirect('/');
