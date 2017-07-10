@@ -50,6 +50,33 @@ module.exports = function (data) {
                 });
 
         },
+        getOfferEdit(req, res) {
+            return data.offers.getById(req.params.id)
+                .then((offer) => {
+                    if (!offer) {
+                        return res.redirect(404, '/offer/all');
+                    }
+
+                    return res.render('editOffer-view', {
+                        context: offer,
+                    });
+                })
+                .catch((err) => {
+                    return res.redirect(404, '/offer/all');
+                });
+
+        },
+        edit(req, res) {
+
+            let offer = req.body;
+            offer.author = req.user._id;
+            let query = req.params.id;
+            
+            return data.offers.edit(offer, query)
+                .then((result) => {
+                    res.redirect('/');
+                });
+        },
         create(req, res) {
             const offer = req.body;
             offer.author = req.user._id;

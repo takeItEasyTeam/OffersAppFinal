@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-  .row.text-center
+  .row
     for item in context
       .col-md-3.col-sm-6.hero-feature.hvr-bob
         .thumbnail
@@ -16,6 +16,14 @@ block content
                 p
                   a.btn.btn-success(href='#') Buy Now! 
                   a.btn.btn-primary(href="/" + item.id) More Info
+                .ratings
+                    p.pull-right 15 reviews
+                    p.star
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star
+                        span.glyphicon.glyphicon-star
 
 
                 

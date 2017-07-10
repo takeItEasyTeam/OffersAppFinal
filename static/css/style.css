@@ -38,6 +38,13 @@ padding: 25px;
   border-bottom: 4px solid red;
 }
 
+.ratings {
+    color: red;
+}
+.star{
+  margin-bottom: -10px;
+}
+
 /* Float Shadow */
 .hvr-float-shadow {
   display: inline-block;

@@ -18,6 +18,8 @@ module.exports = function(app, data) {
             res.render('createOffer-view');
         })
         .get('/:id', controller.getOfferDetails)
+        .get('/edit/:id', controller.getOfferEdit)
+        .post('/edit/:id', controller.edit)
         .post('/createOffer', controller.create);
 
     app.use('/', router);

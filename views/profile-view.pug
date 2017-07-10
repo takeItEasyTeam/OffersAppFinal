@@ -1,13 +1,12 @@
 extends layout
 
 block content
-
     h1 Моите обяви
-     .row.text-center
-       for item in context
+    .row
+      for item in context
         .col-md-3.col-sm-6.hero-feature.hvr-bob
-          .thumbnail
-                img(src='http://placehold.it/800x500', alt='')
+            .thumbnail
+                img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png', alt='')
                 .caption
                     h3= item.destination
                     p Град:
@@ -15,9 +14,16 @@ block content
                     p Цена:
                         =item.price
                     p
-                      a.btn.btn-danger(href='#') Edit
-                      a.btn.btn-danger(href='#') Delete
-                      a.btn.btn-primary(href="/" + item.id) More Info
+                    a.btn.btn-success(href='/edit/' + item._id) Edit 
+                    a.btn.btn-primary(href='/' + item._id) More Info
+                    .ratings
+                        p.pull-right 15 reviews
+                        p.star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
                 
 
 

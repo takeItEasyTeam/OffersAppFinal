@@ -38,12 +38,20 @@ const getData = (db) => {
                     });
                 });
         },
+        edit(offer, query) {
+            return collection.updateOne({_id: new ObjectID(query)},offer)
+                .then((result) => {
+                    offer.id = offer._id;
+                    return offer;
+                });
+        },
         create(offer) {
             return collection.insert(offer)
                 .then((result) => {
                     offer.id = offer._id;
                     return offer;
-                });
+                })
+                .catch((error) => done(error, null));
         },
     };
 };
