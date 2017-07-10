@@ -9,18 +9,19 @@ block content
                     .form-group
                         label(for='destination') Дестинация
                         select#sel1.form-control(name='destination')
+                            option(selected='', disabled='') Моля изберете
                             option Море
                             option Планина
                             option Екскурзия
                             option СПА
                     .form-group
                         label(class="control-label" for="city") Град
-                        input(id="city" name="city" class="form-control" type="text")
+                        input(id="city" name="city" class="form-control" type="text" value=context.city)
                     .form-group
                         label(class="control-label" for="validity") Валидност
-                        input(id="validity" name="validity" class="form-control" type="text")
+                        input(id="validity" name="validity" class="form-control" type="text" value=context.validity)
                     .form-group
                         label(class="control-label" for="price") Цена на човек/ден
-                        input(id="price" name="price" class="form-control" type="text")
+                        input(id="price" name="price" class="form-control" type="text" value=context.price)
                     .form-group
                         button(id="btnRegister" type="submit" class="btn btn-primary btn-block") Create
