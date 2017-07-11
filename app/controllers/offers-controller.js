@@ -81,7 +81,9 @@ module.exports = function(data) {
             data.offers.delete(offer, query, res)
         },
         create(req, res) {
+            console.log(req.file);
             const offer = req.body;
+            offer.file = req.file;
             offer.author = req.user._id;
             return data.offers.create(offer)
                 .then((result) => {

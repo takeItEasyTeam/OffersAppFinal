@@ -5,7 +5,7 @@ block content
         .panel.panel-primary
             .panel-heading.text-center Create Offer
             .panel-body
-                form(action="/createOffer" method="POST")
+                form(action="/createOffer" method="POST" enctype="multipart/form-data")
                     .form-group
                         label(for='destination') Дестинация
                         select#sel1.form-control(name='destination')
@@ -23,5 +23,8 @@ block content
                     .form-group
                         label(class="control-label" for="price") Цена на човек/ден
                         input(id="price" name="price" class="form-control" type="text")
+                    .form-group
+                        label(for='exampleInputFile') File input
+                        input(type='file', name='image')
                     .form-group
                         button(id="btnRegister" type="submit" class="btn btn-primary btn-block") Create
