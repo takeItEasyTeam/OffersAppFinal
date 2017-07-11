@@ -19,7 +19,8 @@ module.exports = function(app, data) {
         .get('/:id', controller.getOfferDetails)
         .get('/edit/:id', controller.getOfferEdit)
         .post('/edit/:id', controller.edit)
-        .post('/createOffer', controller.create);
+        .post('/createOffer', controller.create)
+        .delete('/:id', controller.delete);
 
     app.use('/', router);
 };

@@ -73,6 +73,16 @@ module.exports = function(data) {
                     res.redirect('/');
                 });
         },
+        delete(req, res) {
+            
+            const offer = req.body;
+            offer.author = req.user._id;
+            const query = req.params.id;            
+            return data.offers.delete(offer, query)
+                .then((result) => {
+                    res.redirect('/');
+                });
+        },
         create(req, res) {
             const offer = req.body;
             offer.author = req.user._id;

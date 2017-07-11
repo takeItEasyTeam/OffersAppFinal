@@ -45,6 +45,9 @@ const getData = (db) => {
                     return offer;
                 });
         },
+        delete(offer, query) {
+            return collection.remove( { _id: new ObjectID(query) })               
+        },
         create(offer) {
             return collection.insert(offer)
                 .then((result) => {
