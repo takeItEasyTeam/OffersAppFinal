@@ -78,10 +78,7 @@ module.exports = function(data) {
             const offer = req.body;
             offer.author = req.user._id;
             const query = req.params.id;            
-            return data.offers.delete(offer, query)
-                .then((result) => {
-                    res.redirect('/');
-                });
+            data.offers.delete(offer, query, res)
         },
         create(req, res) {
             const offer = req.body;
