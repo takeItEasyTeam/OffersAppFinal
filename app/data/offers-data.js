@@ -50,7 +50,6 @@ const getData = (db) => {
                 .then((result) => {
                     res.send('Success');
                 });
-
         },
         create(offer) {
             return collection.insert(offer)

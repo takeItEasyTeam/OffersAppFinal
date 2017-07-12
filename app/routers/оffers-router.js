@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const passport = require('passport');
-const { ensureAuthenticated } = require('../utils/auth-validation')
-var multer  = require('multer')
-var upload = multer({ dest: 'static/images/' })
+const { ensureAuthenticated } = require('../utils/auth-validation');
+const multer = require('multer');
+const upload = multer({ dest: 'static/images' }).array('image', 3);
 
 module.exports = function(app, data) {
     const controller = require('../controllers/offers-controller')(data);
@@ -21,7 +21,9 @@ module.exports = function(app, data) {
         .get('/:id', controller.getOfferDetails)
         .get('/edit/:id', controller.getOfferEdit)
         .post('/edit/:id', controller.edit)
-        .post('/createOffer', upload.single('image'), controller.create)
+        .post('/createOffer', (req, res) => {
+            controller.create(req, res, upload);
+        })
         .delete('/:id', controller.delete);
 
     app.use('/', router);

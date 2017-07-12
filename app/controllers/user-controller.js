@@ -28,7 +28,7 @@ module.exports = function(data) {
                         req.flash('success', 'You are now registered and can log in');
                         res.redirect('/login');
                 });
-            });     
+            });
         },
         logout(req, res) {
             req.logout();

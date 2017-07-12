@@ -8,8 +8,6 @@ const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 
-
-
 const configApp = () => {
     const app = express();
 

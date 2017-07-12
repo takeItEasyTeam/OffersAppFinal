@@ -67,28 +67,32 @@ module.exports = function(data) {
         edit(req, res) {
             const offer = req.body;
             offer.author = req.user._id;
-            const query = req.params.id;            
+            const query = req.params.id;
             return data.offers.edit(offer, query)
                 .then((result) => {
                     res.redirect('/');
                 });
         },
         delete(req, res) {
-            
             const offer = req.body;
             offer.author = req.user._id;
-            const query = req.params.id;            
-            data.offers.delete(offer, query, res)
+            const query = req.params.id;
+            data.offers.delete(offer, query, res);
         },
-        create(req, res) {
-            console.log(req.file);
-            const offer = req.body;
-            offer.file = req.file;
-            offer.author = req.user._id;
-            return data.offers.create(offer)
+        create(req, res, upload) {
+            upload(req, res, (err) => {
+                if (err) {
+                    req.flash('error', 'You can upload only 3 pictures!');
+                    res.redirect('/createOffer');
+                }
+                const offer = req.body;
+                offer.files = req.files;
+                offer.author = req.user._id;
+                return data.offers.create(offer)
                 .then((result) => {
-                    res.redirect('/');
+                res.redirect('/');
                 });
+            });
         },
     };
 };
