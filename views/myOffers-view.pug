@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1 Моите обяви
+    .row
+      for item in context
+        .col-md-3.col-sm-6.hero-feature.hvr-bob
+            .thumbnail
+                img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png', alt='')
+                .caption
+                    h3= item.destination
+                    p Град:
+                        =item.city
+                    p Цена:
+                        =item.price
+                    p
+                    a.btn.btn-success(href='/edit/' + item._id) Edit 
+                    a.btn.btn-primary(href='/' + item._id) More Info
+                    a.btn.btn-primary.delete-offer(href='#',data-id=item._id) Delete
+                    .ratings
+                        p.pull-right 15 reviews
+                        p.star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
+                            span.glyphicon.glyphicon-star
+                
+
+
+
+                

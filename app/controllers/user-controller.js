@@ -8,16 +8,6 @@ module.exports = function(data) {
         getRegisterForm(req, res) {
             res.render('register-view');
         },
-        getMyProfile(req, res) {
-            const userId = req.user._id;
-
-            return data.users.getMyProfile(userId)
-                .then((offers) => {
-                    return res.render('profile-view', {
-                        context: offers,
-                    });
-                });
-        },
         register(req, res) {
             /* hash password */
             bcrypt.hash(req.body.password, 10, function(err, hash) {

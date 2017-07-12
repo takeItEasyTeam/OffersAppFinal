@@ -1,31 +1,54 @@
 extends layout
 
 block content
-    h1 Моите обяви
+  .container
     .row
-      for item in context
-        .col-md-3.col-sm-6.hero-feature.hvr-bob
-            .thumbnail
-                img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png', alt='')
-                .caption
-                    h3= item.destination
-                    p Град:
-                        =item.city
-                    p Цена:
-                        =item.price
-                    p
-                    a.btn.btn-success(href='/edit/' + item._id) Edit 
-                    a.btn.btn-primary(href='/' + item._id) More Info
-                    a.btn.btn-primary.delete-offer(href='#',data-id=item._id) Delete
-                    .ratings
-                        p.pull-right 15 reviews
-                        p.star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                
+      .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xs-offset-0.col-sm-offset-0.col-md-offset-3.col-lg-offset-3.toppad
+        .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                =user.username 
+            .panel-body
+              .row
+               .col-md-3.col-lg-3(align='center')
+                | {{#if user._image}}
+                img.img-circle.img-responsive(alt='User Pic', src='{{user._image}}')
+                |                   {{else}}
+                img.img-circle.img-responsive(alt='User Pic', src='../images/avatar-294479_1280.png')
+                |                   {{/if}}
+               .col-md-9.col-lg-9
+                table.table.table-user-information
+                  tbody
+                    tr
+                        td First Name:
+                        td=user.username
+                    tr
+                        td Last Name:
+                        td 
+                    tr
+                        td Phone number:
+                        td 
+                    tr
+                        td E-mail:
+                        td 
+                    tr
+                        td Country:
+                        td 
+                    tr
+                        td Town: 
+                        td 
+                a#my-ads.btn.btn-primary(href='/profile/myOffers') My Offers
+                form#upload-image-form.form-group(action='#/profile')
+                    h4 Upload profile picture
+                    input#file.form-control(type='file', name='uploadedImage')
+                    #imgContainer.col-sm-12
+                    br
+                    button#submit-image.btn.btn-primary.pull-right(type='submit')
+                        | Save image 
+                        span.glyphicon.glyphicon-send
+                    br
+            .panel-footer
+
 
 
 

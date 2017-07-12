@@ -19,16 +19,6 @@ const getData = (db, models) => {
                     return user;
                 });
         },
-        getMyProfile(userId) {
-            return offersCollection.find({ author: userId })
-                .toArray()
-                .then((offers) => {
-                    return offers.map((offer) => {
-                        offer.id = offer._id;
-                        return offer;
-                    });
-                });
-        },
         create(username, password) {   
             const user = {
                 username,

@@ -24,6 +24,7 @@ module.exports = function(app, data) {
         .post('/createOffer', (req, res) => {
             controller.create(req, res, upload);
         })
+        .get('/profile/myOffers', ensureAuthenticated, controller.getMyOffers)
         .delete('/:id', controller.delete);
 
     app.use('/', router);

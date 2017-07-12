@@ -38,6 +38,16 @@ const getData = (db) => {
                     });
                 });
         },
+       getMyOffers(userId) {
+            return collection.find({ author: userId })
+                .toArray()
+                .then((offers) => {
+                    return offers.map((offer) => {
+                        offer.id = offer._id;
+                        return offer;
+                    });
+                });
+        },
         edit(offer, query) {
             return collection.updateOne( { _id: new ObjectID(query) }, offer)
                 .then((result) => {

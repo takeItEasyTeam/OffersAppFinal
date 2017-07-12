@@ -22,7 +22,9 @@ module.exports = function(app, data) {
                 failureFlash: true,
             })
         )
-        .get('/profile', ensureAuthenticated, controller.getMyProfile)
+        .get('/profile', ensureAuthenticated, function(req, res){
+            res.render('profile-view');
+        })
         .get('/logout', controller.logout);
 
     app.use('/', router);

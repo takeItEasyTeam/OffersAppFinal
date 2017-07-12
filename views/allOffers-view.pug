@@ -6,10 +6,7 @@ block content
     for item in context
       .col-md-3.col-sm-6.hero-feature.hvr-bob
         .thumbnail
-            if item.files[0].path
-              img(src=item.files[0].path, alt='')
-            else
-              img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
+            img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
             .caption
                 h3= item.destination
                 p Град:

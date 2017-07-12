@@ -49,6 +49,16 @@ module.exports = function(data) {
                     return res.redirect(404, '/offer/all');
                 });
         },
+        getMyOffers(req, res) {
+            const userId = req.user._id;
+
+            return data.offers.getMyOffers(userId)
+                .then((offers) => {
+                    return res.render('myOffers-view', {
+                        context: offers,
+                    });
+                });
+        },
         getOfferEdit(req, res) {
             return data.offers.getById(req.params.id)
                 .then((offer) => {
