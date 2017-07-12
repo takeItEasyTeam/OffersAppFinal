@@ -13,7 +13,13 @@ module.exports = function(data) {
             bcrypt.hash(req.body.password, 10, function(err, hash) {
                const password = hash;
                const username = req.body.username;
-               return data.users.create(username, password)
+               const firstName = req.body.firstName;
+               const lastName = req.body.lastName;
+               const email = req.body.email;
+               const phoneNumber = req.body.phoneNumber;
+               const country = req.body.country;
+               const town = req.body.town;
+               return data.users.create(username, password, firstName, lastName, email, phoneNumber, country, town)
                     .then(() => {
                         req.flash('success', 'You are now registered and can log in');
                         res.redirect('/login');

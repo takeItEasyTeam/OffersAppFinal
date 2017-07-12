@@ -7,14 +7,26 @@ block content
             .panel-body
                 form(action="/register" method="post")
                     .form-group
-                        label(class="control-label" for="realName") Name:
-                        input(id="realName" name="realName" class="form-control" type="text")
+                        label(class="control-label" for="firstName") First name:
+                        input(id="firstName" name="firstName" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="lastName") Last name:
+                        input(id="lastName" name="lastName" class="form-control" type="text")
                     .form-group
                         label(class="control-label" for="registerUser") Username:
                         input(id="registerUser" name="username" class="form-control" type="text")
                     .form-group
                         label(class="control-label" for="email") Email:
                         input(id="emailr" name="email" class="form-control" type="text")
+                    .form-group
+                    label(class="control-label" for="phoneNumber") Phone number:
+                    input(id="phoneNumber" name="phoneNumber" class="form-control" type="text")
+                    .form-group
+                    label(class="control-label" for="country") Contry:
+                    input(id="country" name="country" class="form-control" type="text")
+                    .form-group
+                    label(class="control-label" for="town") Town:
+                    input(id="town" name="town" class="form-control" type="text")
                     .form-group
                         label(class="control-label" for="registerPassword") Password:
                         input(id="registerPassword" name="password" class="form-control" type="password")

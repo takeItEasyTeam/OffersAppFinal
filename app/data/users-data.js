@@ -19,10 +19,16 @@ const getData = (db, models) => {
                     return user;
                 });
         },
-        create(username, password) {   
+        create(username, password, firstName, lastName, email, phoneNumber, country, town) {   
             const user = {
                 username,
                 password,
+                firstName,
+                lastName,
+                email,
+                phoneNumber,
+                country,
+                town,
             };                              
             return collection.insert(user)
                 .then((result) => {
