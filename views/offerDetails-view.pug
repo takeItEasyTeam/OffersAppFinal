@@ -1,6 +1,76 @@
 extends layout
 
 block content
-    h1 ID-Offer 
-        =context.id
-    
+ 
+  .row
+    .col-md-8
+      #carousel-example-generic.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+            li.active(data-target='#carousel-example-generic', data-slide-to='0')
+            li(data-target='#carousel-example-generic', data-slide-to='1')
+            li(data-target='#carousel-example-generic', data-slide-to='2')
+
+        .carousel-inner
+          .item.active
+            img.img-responsive(src='http://placehold.it/750x500', alt='')
+          .item
+            img.img-responsive(src='http://placehold.it/750x500', alt='')
+          .item
+            img.img-responsive(src='http://placehold.it/750x500', alt='')
+        a.left.carousel-control(href='#carousel-example-generic', data-slide='prev')
+            span.glyphicon.glyphicon-chevron-left
+        a.right.carousel-control(href='#carousel-example-generic', data-slide='next')
+            span.glyphicon.glyphicon-chevron-right
+    .col-md-4
+        h3 Описание на офертата
+        p
+            | Тук ще стои информация и описание на офертата - бла бла бла бла бла бла бла бла бла.
+        h3 Детайли на офертата
+        ul
+            li Град: 
+                =context.city
+            li Цена: 
+                =context.price
+            li Валидност на офертата/дни: 
+                =context.validity
+  br             
+  .row
+    .well
+      .text-right
+        a.btn.btn-success Leave a Review
+      hr
+      .row
+        .col-md-12
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star-empty
+            |                             Anonymous
+            span.pull-right 10 days ago
+            p This product was great in terms of quality. I would definitely buy another!
+      hr
+      .row
+        .col-md-12
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star-empty
+            |                             Anonymous
+            span.pull-right 12 days ago
+            p I've alredy ordered another one!
+      hr
+      .row
+        .col-md-12
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star-empty
+            |                             Anonymous
+            span.pull-right 15 days ago
+            p
+            | I've seen some better than this, but not at this price. I definitely recommend this item.
+                
+
