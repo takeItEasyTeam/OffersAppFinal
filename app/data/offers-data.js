@@ -68,6 +68,16 @@ const getData = (db) => {
                     return offer;
                 });
         },
+        getOffersByFilter(filter) {
+            return collection.find( { city: new RegExp(filter, 'i') })
+        .toArray()
+        .then((offers) => {
+            return offers.map((offer) => {
+                offer.id = offer._id;
+                    return offer;
+                });
+            });
+        },
     };
 };
 
