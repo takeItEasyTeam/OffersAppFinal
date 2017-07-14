@@ -2,6 +2,8 @@ const { Router } = require('express');
 // const { getController } = require('./controller');
 const passport = require('passport');
 const { ensureAuthenticated, frontRegisterUserValidation } = require('../utils/auth-validation');
+const multer = require('multer');
+const upload = multer({ dest: 'static/images/users' }).array('image', 1);
 
 module.exports = function(app, data) {
     const controller = require('../controllers/user-controller')(data);
@@ -22,8 +24,9 @@ module.exports = function(app, data) {
                 failureFlash: true,
             })
         )
-        .get('/profile', ensureAuthenticated, function(req, res){
-            res.render('profile-view');
+        .get('/profile', ensureAuthenticated, controller.getUserProfile)
+        .post('/profile', (req, res) => {
+                controller.updateUserImage(req, res, upload);
         })
         .get('/logout', controller.logout);
 

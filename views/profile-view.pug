@@ -39,19 +39,16 @@ block content
                     tr
                         td Town: 
                         td=user.town
-                a#my-ads.btn.btn-primary(href='/profile/myOffers') My Offers
-                form#upload-image-form.form-group(action='#/profile')
-                    h4 Upload profile picture
-                    input#file.form-control(type='file', name='uploadedImage')
-                    #imgContainer.col-sm-12
+                a#my-ads.btn.btn-primary(href="/profile/myOffers") My Offers
+                form(action="/profile" method="POST" enctype="multipart/form-data")
+                    .form-group
+                    label(class="control-label" for="image") Upload profile picture
+                    input(type="file" name="image" id="file" class="form-control")
+                    div(id="imgContainer" class="col-sm-12")
                     br
-                    button#submit-image.btn.btn-primary.pull-right(type='submit')
+                    button(type="submit" class="btn btn-primary pull-right")
                         | Save image 
                         span.glyphicon.glyphicon-send
                     br
             .panel-footer
-
-
-
-
-                
+  script(src='/static/js/show-image.js')

@@ -31,5 +31,23 @@ module.exports = function(data) {
             req.flash('success', 'You are logged out');
             res.redirect('/');
         },
+        getUserProfile(req, res) {
+            res.render('profile-view');
+        },
+        updateUserImage(req, res, upload) {
+            upload(req, res, (err) => {
+                if (err) {
+                    req.flash('error', 'Upload failed!');
+                    res.redirect('/profile');
+                }
+                const userId = req.session.passport.user;
+                const image = req.files;
+
+                data.users.updateImage(userId, image)
+                .then(() => {
+                    res.redirect('/profile');
+                });
+            });
+        },
     };
 };

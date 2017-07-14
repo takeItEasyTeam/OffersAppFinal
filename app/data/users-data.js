@@ -3,7 +3,6 @@ const { ObjectID } = require('mongodb');
 
 const getData = (db, models) => {
     const collection = db.collection('users');
-    const offersCollection = db.collection('offers')
     return {
         findBy(props) {
             return collection.findOne(props);
@@ -19,7 +18,7 @@ const getData = (db, models) => {
                     return user;
                 });
         },
-        create(username, password, firstName, lastName, email, phoneNumber, country, town) {   
+        create(username, password, firstName, lastName, email, phoneNumber, country, town) {
             const user = {
                 username,
                 password,
@@ -29,11 +28,15 @@ const getData = (db, models) => {
                 phoneNumber,
                 country,
                 town,
-            };                              
+            };
             return collection.insert(user)
                 .then((result) => {
                     return user;
                 });
+        },
+        updateImage(id, image) {
+            return collection.updateOne({ _id: new ObjectID(id) },
+                { $set: { 'files': image } });
         },
     };
 };
