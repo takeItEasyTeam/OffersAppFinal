@@ -42,11 +42,15 @@ module.exports = function(data) {
                 }
                 const userId = req.session.passport.user;
                 const image = req.files;
-
-                data.users.updateImage(userId, image)
-                .then(() => {
+                if (image.length !== 0) {
+                    data.users.updateImage(userId, image)
+                    .then(() => {
+                        res.redirect('/profile');
+                    });
+                } else {
+                    req.flash('error', 'You must select a picture first');
                     res.redirect('/profile');
-                });
+                }
             });
         },
     };

@@ -48,12 +48,9 @@ const getData = (db) => {
                     });
                 });
         },
-        edit(offer, query) {
-            return collection.updateOne( { _id: new ObjectID(query) }, offer)
-                .then((result) => {
-                    offer.id = offer._id;
-                    return offer;
-                });
+        edit(updates, query) {
+            return collection.updateOne({ _id: new ObjectID(query) },
+                { $set: updates });
         },
         delete(offer, query, res) {
             return collection.remove( { _id: new ObjectID(query) })

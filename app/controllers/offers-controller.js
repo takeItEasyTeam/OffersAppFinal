@@ -74,14 +74,42 @@ module.exports = function(data) {
                     return res.redirect(404, '/offer/all');
                 });
         },
-        edit(req, res) {
-            const offer = req.body;
-            offer.author = req.user._id;
-            const query = req.params.id;
-            return data.offers.edit(offer, query)
-                .then((result) => {
-                    res.redirect('/');
-                });
+        edit(req, res, upload) {
+            upload(req, res, (err) => {
+                if (err) {
+                    req.flash('error', 'You can upload only 3 pictures!');
+                    res.redirect('/createOffer');
+                }
+                const updates = {};
+                const query = req.params.id;
+
+                if (req.body.destination !== undefined) {
+                    updates.destination = req.body.destination.trim();
+                }
+                if (req.body.city.trim() !== '') {
+                    updates.city = req.body.city.trim();
+                }
+                if (req.body.validity.trim() !== '') {
+                    updates.validity = req.body.validity.trim();
+                }
+                if (req.body.price.trim() !== '') {
+                    updates.price = req.body.price.trim();
+                }
+                if ( req.files.length !== 0) {
+                    updates.files = req.files;
+                }
+
+                const offerId = req.params.id;
+
+                return data.offers.edit(updates, query)
+                    .then((result) => {
+                        res.redirect('/');
+                    })
+                    .catch((error) => {
+                        req.flash('error', 'Please enter information for updating');
+                        res.redirect('/edit/' + offerId);
+                    });
+            });
         },
         delete(req, res) {
             const offer = req.body;

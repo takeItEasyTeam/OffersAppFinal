@@ -20,7 +20,9 @@ module.exports = function(app, data) {
         })
         .get('/:id', controller.getOfferDetails)
         .get('/edit/:id', controller.getOfferEdit)
-        .post('/edit/:id', controller.edit)
+        .post('/edit/:id', (req, res) => {
+            controller.edit(req, res, upload);
+        })
         .post('/createOffer', (req, res) => {
             controller.create(req, res, upload);
         })
