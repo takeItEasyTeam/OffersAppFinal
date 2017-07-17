@@ -27,6 +27,8 @@ block content
                         =product.qty
                     h4 Цена: 
                         =product.price
+                    a.btn.btn-success(href='/reduce/' + product.item.id) Намали с едно! 
+                    a.btn.btn-danger(href='/remove/' + product.item.id) Изтрий! 
             hr
     else
         H1.text-center Количката е празна
