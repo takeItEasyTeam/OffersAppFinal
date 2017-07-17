@@ -11,7 +11,7 @@ module.exports = {
             .then(() => connect(connectionString))
             .then((db) => {
                 const data = initData(db);
-                require('./auth')(app, data, 'Little secret');
+                require('./auth')(app, data, db, 'Little secret');
 
                 require('./routers')(app, data);
 

@@ -49,6 +49,21 @@ module.exports = function(data) {
                     return res.redirect(404, '/offer/all');
                 });
         },
+        addOfferToCart(req, res) {
+            return data.offers.getById(req.params.id)
+                .then((offer) => {
+                    if (!offer) {
+                        return res.redirect(404, '/offer/all');
+                    }
+
+                    return {
+                        context: offer,
+                    };
+                })
+                .catch((err) => {
+                    return res.redirect(404, '/offer/all');
+                });
+        },
         getMyOffers(req, res) {
             const userId = req.user._id;
 

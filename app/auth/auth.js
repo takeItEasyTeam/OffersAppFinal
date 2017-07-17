@@ -2,9 +2,10 @@ const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-local');
 const bcrypt = require('bcryptjs');
+const MongoStore = require('connect-mongo')(session);
+const { connect } = require('../db');
 
-
-module.exports = (app, { users }, secret) => {
+module.exports = (app, { users }, db, secret) => {
     passport.use(new Strategy((username, password, done) => {
         users.findBy({ username: username })
             .then((user) => {
@@ -39,6 +40,8 @@ module.exports = (app, { users }, secret) => {
         secret,
         resave: true,
         saveUninitialized: true,
+        store: new MongoStore({ db }),
+        cookie: { maxAge: 180 * 60 * 1000 },
     }));
     app.use(passport.initialize());
     app.use(passport.session());
@@ -65,8 +68,8 @@ module.exports = (app, { users }, secret) => {
 
     app.use((req, res, next) => {
         res.locals = res.locals || {};
-
         res.locals.user = req.user;
+        res.locals.session = req.session;
         next();
     });
 };
