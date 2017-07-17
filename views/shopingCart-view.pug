@@ -7,8 +7,9 @@ block content
             h1.page-header
                 | Пазарска количка
           .col-lg-6
-            h1.page-header
-                | Цена на поръчката:
+            h1.page-header Общо: 
+                    =totalPrice 
+                    | лв.
                     
         for product in products 
             .row           
