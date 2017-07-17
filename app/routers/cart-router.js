@@ -13,11 +13,11 @@ module.exports = function(app, data) {
                     .then((result) => {
                         cart.add(result.context, result.context.id);
                         req.session.cart = cart;
-                        res.redirect('/');
+                        res.redirect(req.get('referer'));
                     });
             
         })
-        .get('/shopingCart', function (req, res) {
+        .get('/shopingCart', function(req, res) {
             if (!req.session.cart) {
                 return res.render('shopingCart-view');
             }

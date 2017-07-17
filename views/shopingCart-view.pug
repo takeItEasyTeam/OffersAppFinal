@@ -26,9 +26,18 @@ block content
                     h4 Количество: 
                         =product.qty
                     h4 Цена: 
-                        =product.price
-                    a.btn.btn-success(href='/reduce/' + product.item.id) Намали с едно! 
+                        =product.price    
+                    .input-group.minusPlus
+                      span.input-group-btn
+                        a.btn.btn-danger(href='/reduce/' + product.item.id)
+                            span.glyphicon.glyphicon-minus
+                      input.form-control.input-number(type='text', value=product.qty, min='1', max='100')
+                      span.input-group-btn
+                        a.btn.btn-success(href='/addToCart/' + product.item.id)
+                            span.glyphicon.glyphicon-plus
+                    br
                     a.btn.btn-danger(href='/remove/' + product.item.id) Изтрий! 
+
             hr
     else
         H1.text-center Количката е празна

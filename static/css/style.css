@@ -44,6 +44,10 @@ padding: 25px;
 .star{
   margin-bottom: -10px;
 }
+.minusPlus{
+width: 150px;
+  
+}
 
 /* Float Shadow */
 .hvr-float-shadow {
