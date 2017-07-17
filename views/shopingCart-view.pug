@@ -1,0 +1,24 @@
+extends layout
+
+block content
+        .row
+          .col-lg-12
+            h1.page-header.text-center
+                | Пазарска количка
+                small 
+        for product in products 
+            .row           
+                .col-md-7
+                    a(href='#')
+                        img.img-responsive(src='http://placehold.it/700x300', alt='')
+                .col-md-5
+                    h3 
+                        =product.item.destination
+                    h4 Град
+                        =product.item.city
+                    p
+                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.
+                    a.btn.btn-primary(href='#')
+                        | View Project 
+                        span.glyphicon.glyphicon-chevron-right
+            hr
