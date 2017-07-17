@@ -47,6 +47,8 @@ html(lang='en')
                   span.glyphicon.glyphicon-shopping-cart
                   |  Cart
                   span.badge
+                    if session.cart
+                      =session.cart.totalQty
             if !user
               li.hvr-float-shadow
                 a(href='/login') Влез

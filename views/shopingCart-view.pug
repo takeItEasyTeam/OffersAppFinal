@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    if products 
         .row
           .col-lg-6
             h1.page-header
@@ -26,3 +27,5 @@ block content
                     h4 Цена: 
                         =product.price
             hr
+    else
+        H1.text-center Количката е празна
