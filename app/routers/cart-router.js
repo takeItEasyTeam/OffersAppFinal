@@ -19,7 +19,7 @@ module.exports = function(app, data) {
         })
         .get('/shopingCart', function(req, res){
             if (!req.session.cart){
-                return res.render('shopingCart-view', { products: null})
+                return res.render('shopingCart-view')
             }
 
             const cart = new Cart(req.session.cart)
