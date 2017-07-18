@@ -13,4 +13,35 @@ $(document).ready(function(){
       },
     });
   });
+  $('#sortByPrice-High').on('click', function(e){
+
+    $.ajax({
+      type: 'GET',
+      url: '/sortByPrice',
+      success: function(response) {
+        getTemplateAjax(response);
+      },
+      error: function(err) {
+        console.log(err);
+      },
+    });
+  });
+
+
+  function getTemplateAjax(dataFromApi) {
+    let source;
+    let template;
+    let test;
+
+    $.ajax({
+        url: `/static/templates/testovo.handlebars`,
+        cache: true,
+        success: function (data) {
+            source = data;
+            template = Handlebars.compile(source);
+            test = template(dataFromApi);
+            $('.proba').html(test);
+        }
+    });
+  };
 });

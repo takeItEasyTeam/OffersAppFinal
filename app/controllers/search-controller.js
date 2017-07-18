@@ -9,5 +9,11 @@ module.exports = function(data) {
                     });
                 });
         },
+        sortByPrice(req, res){
+            return data.offers.getAll()
+                .then((offers) => {
+                    return res.send(JSON.stringify({context: offers }));
+                });
+        }
     };
 };

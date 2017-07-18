@@ -6,7 +6,8 @@ module.exports = function(app, data) {
     const router = new Router();
 
     router
-        .get('/search', controller.findOffers);
+        .get('/search', controller.findOffers)
+        .get('/sortByPrice', controller.sortByPrice)
 
 
     app.use('/', router);
