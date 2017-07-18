@@ -14,8 +14,16 @@ block content
         for product in products 
             .row           
                 .col-md-7
-                    a(href='#')
-                        img.img-responsive(src='http://placehold.it/700x300', alt='')
+                    if product.item.files
+                        if product.item.files[0]
+                            a(href='#')
+                            img.img-responsive(src='/' + product.item.files[0].path, alt='')
+                        else
+                            a(href='#')
+                            img.img-responsive(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
+                    else
+                        a(href='#')
+                        img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
                 .col-md-5
                     h3 
                         =product.item.destination
