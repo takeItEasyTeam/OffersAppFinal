@@ -2,51 +2,68 @@ extends layout
 
 block content
     if products 
-        .row
-          .col-lg-6
-            h1.page-header
-                | Пазарска количка
-          .col-lg-6
-            h1.page-header Общо: 
-                    =totalPrice 
-                    | лв.
-                    
-        for product in products 
-            .row           
-                .col-md-7
-                    if product.item.files
-                        if product.item.files[0]
-                            a(href='#')
-                            img.img-responsive(src='/' + product.item.files[0].path, alt='')
-                        else
-                            a(href='#')
-                            img.img-responsive(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
-                    else
-                        a(href='#')
-                        img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
-                .col-md-5
-                    h3 
-                        =product.item.destination
-                    h4 Град: 
-                        =product.item.city
-                    p
-                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.                   
-                    h4 Количество: 
-                        =product.qty
-                    h4 Цена: 
-                        =product.price    
-                    .input-group.minusPlus
-                      span.input-group-btn
-                        a.btn.btn-danger(href='/reduce/' + product.item.id)
-                            span.glyphicon.glyphicon-minus
-                      input.form-control.input-number(type='text', value=product.qty, min='1', max='100')
-                      span.input-group-btn
-                        a.btn.btn-success(href='/addToCart/' + product.item.id)
-                            span.glyphicon.glyphicon-plus
-                    br
-                    a.btn.btn-danger(href='/remove/' + product.item.id) Изтрий! 
+            .row
+              .col-xs-12
+                .panel.panel-info
+                  .panel-heading
+                    .panel-title
+                      .row
+                        .col-xs-6
+                          h5
+                            span.glyphicon.glyphicon-shopping-cart
+                            |  Пазарска количка
+                        .col-xs-6
+                          a.button.btn.btn-primary.btn-sm.btn-block(href='/',type='button')
+                            span.glyphicon.glyphicon-share-alt
+                            |  Продължи да пазаруваш
+                .panel-body
+                  for product in products
+                    .row
+                      .col-xs-2
+                        img.img-responsive(src=product.item.files[0].path)
+                      .col-xs-4
+                        h4.product-name
+                            strong=product.item.destination
+                        h4
+                            small=product.item.city
+                      .col-xs-6
+                        .col-xs-6.text-right
+                            h6
+                              strong
+                                =product.price 
+                                span.text-muted лв.
+                        .col-xs-4
+                                .input-group.minusPlus
+                                    span.input-group-btn
+                                        a.btn.btn-danger(href='/reduce/' + product.item.id)
+                                            span.glyphicon.glyphicon-minus
+                                    input.form-control.input-number(type='text', value=product.qty, min='1', max='100')
+                                    span.input-group-btn
+                                        a.btn.btn-success(href='/addToCart/' + product.item.id)
+                                            span.glyphicon.glyphicon-plus
+                        .col-xs-2
+                                a.button.btn.btn-labeled.btn-danger(href='/remove/' + product.item.id, type='button')
+                                    span.btn-label
+                                        i.glyphicon.glyphicon-trash
+                                    | Изтрий
+                    hr
+                  .row
+                    .text-center
+                      .col-xs-9
+                        h6.text-right 
+                      .col-xs-3
+                        button.btn.btn-danger.btn-sm.btn-block(type='button')
+                          | Изтрий картата!
+                .panel-footer
+                  .row.text-center
+                    .col-xs-9
+                      h4.text-right
+                        | Тотал:  
+                        strong=totalPrice
+                        | лв. 
+                    .col-xs-3
+                      a.button.btn.btn-success.btn-block(href='/checkout', type='button')
+                        | Потвърди и плати
 
-            hr
-        a.btn.btn-danger(href='/checkout') Плащане
     else
         H1.text-center Количката е празна
