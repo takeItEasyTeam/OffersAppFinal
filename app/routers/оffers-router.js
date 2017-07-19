@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const passport = require('passport');
-const { ensureAuthenticated } = require('../utils/auth-validation');
+const { isLogin } = require('../utils/auth-validation');
 const multer = require('multer');
 const upload = multer({ dest: 'static/images' }).array('image', 3);
 
@@ -16,7 +16,7 @@ module.exports = function(app, data) {
         .get('/see', controller.getByOfferType)
         .get('/spa', controller.getByOfferType)
         .get('/excursion', controller.getByOfferType)
-        .get('/createOffer', ensureAuthenticated, function(req, res) {
+        .get('/createOffer', isLogin, function(req, res) {
             res.render('createOffer-view');
         })
         .get('/:id', controller.getOfferDetails)
@@ -27,7 +27,7 @@ module.exports = function(app, data) {
         .post('/createOffer', (req, res) => {
             controller.create(req, res, upload);
         })
-        .get('/profile/myOffers', ensureAuthenticated, controller.getMyOffers)
+        .get('/profile/myOffers', isLogin, controller.getMyOffers)
         .delete('/:id', controller.delete);
 
     app.use('/', router);

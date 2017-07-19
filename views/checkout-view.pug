@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    != messages()
+    .col-md-5.col-md-offset-3
+        .panel.panel-primary
+            .panel-heading.text-center Поръчка
+            .panel-body
+                form(action="/checkout" method="POST" enctype="multipart/form-data")
+                    .form-group
+                        label(class="control-label" for="deliveryName") Име на получател
+                        input(id="deliveryName" name="deliveryName" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="adress") Адрес
+                        input(id="adress" name="adress" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="cartHolderName") Име на картодържателя
+                        input(id="cartHolderName" name="cartHolderName" class="form-control" type="text")
+                    .form-group
+                        label(class="control-label" for="cartNumber") Номер на картата
+                        input(id="cartNumber" name="cartNumber" class="form-control" type="text")
+                    .form-group
+                        button(id="btnRegister" type="submit" class="btn btn-primary btn-block") Завърши поръчката!
+
+    script(src='/static/js/show-image.js')

@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const Cart = require('../model/cart');
+const { isLogin } = require('../utils/auth-validation');
 
 module.exports = function(app, data) {
     const controller = require('../controllers/cart-controller')(data);
@@ -23,7 +24,7 @@ module.exports = function(app, data) {
             }
 
             const cart = new Cart(req.session.cart);
-            res.render('shopingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice })
+            return res.render('shopingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice })
         })
         .get('/reduce/:id', function(req, res, next) {
             const productId = req.params.id;
@@ -41,10 +42,13 @@ module.exports = function(app, data) {
             req.session.cart = cart;
             res.redirect('/shopingCart');
         })
-        .post('/checkout', function(req, res) {
-            const cart = new Cart(req.session.cart)
-            return controller.createOrder(req, res, cart)
+        .get('/checkout', isLogin, function(req, res){
+            res.render('checkout-view');
         })
+        .post('/checkout', isLogin, function(req, res) {
+            const cart = new Cart(req.session.cart);
+            return controller.createOrder(req, res, cart);
+        });
 
     app.use('/', router);
 };

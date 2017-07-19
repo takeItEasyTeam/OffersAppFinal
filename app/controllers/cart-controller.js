@@ -16,10 +16,9 @@ module.exports = function(data) {
                 });
         },
         createOrder(req, res, cart) {
-                const order = {
-                    user: req.user._id,
-                    cart: cart,
-                };
+                const order = req.body;
+                order.user = req.user;
+                order.cart = cart;
                 
                 return data.cart.createOrder(order)
                 .then((result) => {

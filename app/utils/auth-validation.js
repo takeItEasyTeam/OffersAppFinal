@@ -1,4 +1,4 @@
-function ensureAuthenticated(req, res, next) {
+function isLogin(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
@@ -46,4 +46,4 @@ function frontRegisterUserValidation(req, res, next) {
   }
 }
 
-module.exports = { ensureAuthenticated, frontRegisterUserValidation }
+module.exports = { isLogin, frontRegisterUserValidation }
