@@ -49,21 +49,6 @@ module.exports = function(data) {
                     return res.redirect(404, '/offer/all');
                 });
         },
-        addOfferToCart(req, res) {
-            return data.offers.getById(req.params.id)
-                .then((offer) => {
-                    if (!offer) {
-                        return res.redirect(404, '/offer/all');
-                    }
-
-                    return {
-                        context: offer,
-                    };
-                })
-                .catch((err) => {
-                    return res.redirect(404, '/offer/all');
-                });
-        },
         getMyOffers(req, res) {
             const userId = req.user._id;
 
@@ -146,19 +131,6 @@ module.exports = function(data) {
                 res.redirect('/');
                 });
             });
-        },
-        createOrder(req, res, cart) {
-                const order = {
-                    user: req.user._id,
-                    cart: cart,
-                };
-                
-                return data.offers.createOrder(order)
-                .then((result) => {
-                    req.session.cart = null;
-                    req.flash('success', 'Твоята поръчка е регистрирана успешно');
-                    res.redirect('/');
-                });
         },
     };
 };

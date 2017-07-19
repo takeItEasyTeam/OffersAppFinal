@@ -2,7 +2,7 @@ const { Router } = require('express');
 const Cart = require('../model/cart');
 
 module.exports = function(app, data) {
-    const controller = require('../controllers/offers-controller')(data);
+    const controller = require('../controllers/cart-controller')(data);
 
     const router = new Router();
 
@@ -42,7 +42,6 @@ module.exports = function(app, data) {
             res.redirect('/shopingCart');
         })
         .post('/checkout', function(req, res) {
-            console.log('Vliza')
             const cart = new Cart(req.session.cart)
             return controller.createOrder(req, res, cart)
         })
