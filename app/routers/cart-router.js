@@ -45,6 +45,10 @@ module.exports = function(app, data) {
         .get('/checkout', isLogin, function(req, res){
             res.render('checkout-view');
         })
+        .get('/deleteCart', function(req, res){
+            req.session.cart = null;
+            res.redirect('/shopingCart');
+        })
         .post('/checkout', isLogin, function(req, res) {
             const cart = new Cart(req.session.cart);
             return controller.createOrder(req, res, cart);
