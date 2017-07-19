@@ -2,6 +2,7 @@ const { ObjectID } = require('mongodb');
 
 const getData = (db) => {
     const collection = db.collection('offers');
+    const collectionorder = db.collection('order');
     return {
         getAll() {
             return collection.find({})
@@ -61,8 +62,13 @@ const getData = (db) => {
         create(offer) {
             return collection.insert(offer)
                 .then((result) => {
-                    offer.id = offer._id;
                     return offer;
+                });
+        },
+        createOrder(order) {
+            return collectionorder.insert(order)
+                .then((result) => {
+                    return order;
                 });
         },
         getOffersByFilter(filter) {

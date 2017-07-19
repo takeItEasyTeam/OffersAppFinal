@@ -147,5 +147,18 @@ module.exports = function(data) {
                 });
             });
         },
+        createOrder(req, res, cart) {
+                const order = {
+                    user: req.user._id,
+                    cart: cart,
+                };
+                
+                return data.offers.createOrder(order)
+                .then((result) => {
+                    req.session.cart = null;
+                    req.flash('success', 'Твоята поръчка е регистрирана успешно');
+                    res.redirect('/');
+                });
+        },
     };
 };

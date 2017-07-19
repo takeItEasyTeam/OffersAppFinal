@@ -47,5 +47,8 @@ block content
                     a.btn.btn-danger(href='/remove/' + product.item.id) Изтрий! 
 
             hr
+        form(action="/checkout" method="POST" enctype="multipart/form-data")
+            .form-group
+                button(id="btnRegister" type="submit" class="btn btn-primary btn-block") Create
     else
         H1.text-center Количката е празна

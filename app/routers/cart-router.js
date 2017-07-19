@@ -41,6 +41,11 @@ module.exports = function(app, data) {
             req.session.cart = cart;
             res.redirect('/shopingCart');
         })
+        .post('/checkout', function(req, res) {
+            console.log('Vliza')
+            const cart = new Cart(req.session.cart)
+            return controller.createOrder(req, res, cart)
+        })
 
     app.use('/', router);
 };
