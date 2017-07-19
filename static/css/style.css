@@ -47,10 +47,6 @@ padding: 25px;
  width: 150px;
 }
 
-/* button delete from cart */
-.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
-.btn-labeled {padding-top: 0;padding-bottom: 0;}
-.btn { margin-bottom:10px; }
 
 /* Float Shadow */
 .hvr-float-shadow {
