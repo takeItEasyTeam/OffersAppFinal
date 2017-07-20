@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = function(app, data) {
+module.exports = function(app, data, io) {
     fs.readdirSync('./app/routers/')
         .filter((x) => x.includes('-router'))
         .forEach((file) => {
