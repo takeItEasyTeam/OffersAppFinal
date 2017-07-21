@@ -43,42 +43,23 @@ block content
                 =context.validity
   br             
   .row
+    .well#well-rate
+      - for (var x = 0; x < 3; x++)
+        .row
+            .col-md-12
+                span.glyphicon.glyphicon-star
+                span.glyphicon.glyphicon-star
+                span.glyphicon.glyphicon-star
+                span.glyphicon.glyphicon-star
+                span.glyphicon.glyphicon-star-empty
+                |                             Anonymous
+                span.pull-right 10 days ago
+                p This product was great in terms of quality. I would definitely buy another!
+        hr
     .well
       .text-right
-        a.btn.btn-success Leave a Review
-      hr
+        a.btn.btn-success#btn-add-message Оцени офертата
       .row
-        .col-md-12
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty
-            |                             Anonymous
-            span.pull-right 10 days ago
-            p This product was great in terms of quality. I would definitely buy another!
-      hr
-      .row
-        .col-md-12
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty
-            |                             Anonymous
-            span.pull-right 12 days ago
-            p I've alredy ordered another one!
-      hr
-      .row
-        .col-md-12
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty
-            |                             Anonymous
-            span.pull-right 15 days ago
-            p
-            | I've seen some better than this, but not at this price. I definitely recommend this item.
-                
-
+        div.hidden#message-form
+            textarea(class="form-control" rows="6" placeholder="Добавете коментар ..." required)
+            button.btn.btn-danger(id="message-send") Изпрати оценка

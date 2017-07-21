@@ -65,4 +65,11 @@ $(document).ready(function(){
         }
     });
   };
+  
+  //test
+  $('#btn-add-message').on('click', function(e){
+    $('#message-form').toggleClass('hidden');
+    $('#btn-add-message').toggleClass('btn-success');
+  });
 });
+

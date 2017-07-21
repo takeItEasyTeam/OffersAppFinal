@@ -83,7 +83,11 @@ const getData = (db) => {
                         return offer;
                 });
             });
-        }
+        },
+        rate(comment, query) {
+            return collection.updateOne({ _id: new ObjectID(query) },
+                { $push: comment });
+        },
     };
 };
 
