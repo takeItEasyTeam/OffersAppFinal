@@ -7,7 +7,7 @@ module.exports = function(app, data) {
 
     router
         .get('/search', controller.findOffers)
-        .get('/sortByPrice', controller.sortByPrice)
+        .post('/sort', controller.sortOffers)
 
 
     app.use('/', router);

@@ -14,10 +14,31 @@ $(document).ready(function(){
     });
   });
   $('#sortByPrice-High').on('click', function(e){
-
+    const currentPath ={
+      path: window.location.pathname,
+      order: -1,
+    };
     $.ajax({
-      type: 'GET',
-      url: '/sortByPrice',
+      type: 'POST',
+      url: '/sort',
+      data: currentPath,
+      success: function(response) {
+        getTemplateAjax(response);
+      },
+      error: function(err) {
+        console.log(err);
+      },
+    });
+  });
+  $('#sortByPrice-Low').on('click', function(e){
+    const currentPath ={
+      path: window.location.pathname,
+      order: 1,
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/sort',
+      data: currentPath,
       success: function(response) {
         getTemplateAjax(response);
       },

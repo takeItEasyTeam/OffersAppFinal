@@ -9,10 +9,30 @@ module.exports = function(data) {
                     });
                 });
         },
-        sortByPrice(req, res){
-            return data.offers.getAll()
+        sortOffers(req, res) {
+            let offerType;
+
+            switch (req.body.path) {
+                case '/see':
+                    offerType = 'Море';
+                    break;
+                case '/mountain':
+                    offerType = 'Планина';
+                    break;
+                case '/spa':
+                    offerType = 'СПА';
+                    break;
+                case '/excursion':
+                    offerType = 'Екскурзия';
+                    break;
+                default: offerType = 'None';
+                break;
+            }
+            console.log(offerType);
+            const order = Number(req.body.order);
+            return data.offers.sortOffers(order, offerType)
                 .then((offers) => {
-                    return res.send(JSON.stringify({context: offers }));
+                    return res.send( { context: offers } );
                 });
         }
     };

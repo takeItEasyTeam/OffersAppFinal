@@ -74,6 +74,16 @@ const getData = (db) => {
                 });
             });
         },
+        sortOffers(order, offerType) {
+            return collection.find( { destination: offerType }).sort({ price: order })
+            .toArray()
+            .then((offers) => {
+                return offers.map((offer) => {
+                    offer.id = offer._id;
+                        return offer;
+                });
+            });
+        }
     };
 };
 

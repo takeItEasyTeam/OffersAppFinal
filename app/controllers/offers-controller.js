@@ -124,6 +124,7 @@ module.exports = function(data) {
                     res.redirect('/createOffer');
                 }
                 const offer = req.body;
+                offer.price = Number(offer.price);
                 offer.files = req.files;
                 offer.author = req.user._id;
                 return data.offers.create(offer)
