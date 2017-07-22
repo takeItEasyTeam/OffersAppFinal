@@ -28,7 +28,10 @@ module.exports = function(app, data) {
             controller.create(req, res, upload);
         })
         .get('/profile/myOffers', isLogin, controller.getMyOffers)
-        .delete('/:id', controller.delete);
+        .delete('/:id', controller.delete)
+        .post('/rate/:id', (req, res) => {
+            controller.rate(req, res, upload);
+        })
 
     app.use('/', router);
 };

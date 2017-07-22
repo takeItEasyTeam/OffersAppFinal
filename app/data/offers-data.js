@@ -86,7 +86,7 @@ const getData = (db) => {
         },
         rate(comment, query) {
             return collection.updateOne({ _id: new ObjectID(query) },
-                { $push: comment });
+                { $push: {'comments': comment }});
         },
     };
 };

@@ -124,13 +124,40 @@ module.exports = function(data) {
                     res.redirect('/createOffer');
                 }
                 const offer = req.body;
+
                 offer.price = Number(offer.price);
                 offer.files = req.files;
                 offer.author = req.user._id;
+                offer.comments = [];
                 return data.offers.create(offer)
                 .then((result) => {
                 res.redirect('/');
                 });
+            });
+        },
+        rate(req, res, upload) {
+            upload(req, res, (err) => {
+
+                const comment = {};
+                const query = req.params.id;
+
+                //let myDate = new Date();
+
+                if (req.body.message.trim() !== '') {
+                    comment.text = req.body.message.trim();
+                }
+                comment.date = new Date();
+                comment.user = req.user._id;
+                //to be implement five-star-rating
+                comment.rate = Number(3);
+
+                return data.offers.rate(comment, query)
+                    .then((result) => {
+                        res.redirect('/');
+                    })
+                    .catch((error) => {
+                        req.flash('error', 'Please enter comment');
+                    });
             });
         },
     };

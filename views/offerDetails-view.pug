@@ -61,5 +61,8 @@ block content
         a.btn.btn-success#btn-add-message Оцени офертата
       .row
         div.hidden#message-form
-            textarea(class="form-control" rows="6" placeholder="Добавете коментар ..." required)
-            button.btn.btn-danger(id="message-send") Изпрати оценка
+            form(action="/rate/" + context._id method="POST"  enctype="multipart/form-data")
+                .form-group
+                    textarea(class="form-control" rows="6" name="message" placeholder="Добавете коментар ..." required)
+                .form-group
+                    button.btn.btn-danger(id="message-send") Изпрати оценка
