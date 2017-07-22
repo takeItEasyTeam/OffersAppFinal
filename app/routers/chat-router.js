@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { isLogin } = require('../utils/auth-validation');
 
-module.exports = function(app, data, io) {
+module.exports = function(app, data) {
     const controller = require('../controllers/chat-controller')(data);
 
     const router = new Router();
