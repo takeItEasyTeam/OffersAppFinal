@@ -10,10 +10,12 @@ module.exports = function(data) {
                 });
         },
         sortOffers(req, res) {
+
+            console.log(req.query.priceHight);
             let offerType;
 
             switch (req.body.path) {
-                case '/see':
+                case '/sea':
                     offerType = 'Море';
                     break;
                 case '/mountain':

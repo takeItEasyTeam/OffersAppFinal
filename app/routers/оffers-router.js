@@ -13,7 +13,7 @@ module.exports = function(app, data) {
     router
         .get('/', controller.getAll)
         .get('/mountain', controller.getByOfferType)
-        .get('/see', controller.getByOfferType)
+        .get('/sea', controller.getByOfferType)
         .get('/spa', controller.getByOfferType)
         .get('/excursion', controller.getByOfferType)
         .get('/createOffer', isLogin, function(req, res) {

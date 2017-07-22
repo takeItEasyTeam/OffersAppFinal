@@ -12,7 +12,7 @@ module.exports = function(data) {
             let offerType;
 
             switch (req.path) {
-                case '/see':
+                case '/sea':
                     offerType = 'Море';
                     break;
                 case '/mountain':
