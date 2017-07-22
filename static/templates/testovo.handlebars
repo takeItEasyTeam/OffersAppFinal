@@ -1,3 +1,30 @@
 {{#each context}}
-<h1>{{price}}</h1>
+                    <div class="col-md-3 col-sm-6 hero-feature hvr-bob">
+                        <div class="thumbnail">
+                            {{#if files.0.path}}
+                                <img src={{files.0.path}} alt="">
+                            {{else}}
+                                <img src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')>
+                            {{/if}}
+                            <div class="caption">
+                                <h3>{{destination}}</h3>
+                                <p>Град: {{city}}</p>
+                                <p>Цена: {{price}}</p>
+                                <p>
+                                    <a class="btn btn-success" href="/addToCart/{{id}}">Купи</a>
+                                    <a class="btn btn-primary" href="/{{id}}">Информация</a>
+                                </p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 {{/each}}

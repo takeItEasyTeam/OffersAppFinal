@@ -6,7 +6,7 @@ $(document).ready(function(){
       type: 'DELETE',
       url: '/' +id,
       success: function(response) {
-        window.location.href='/profile';
+        window.location.href='/profile/myOffers';
       },
       error: function(err) {
         console.log(err);
