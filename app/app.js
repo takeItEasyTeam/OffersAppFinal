@@ -17,7 +17,7 @@ module.exports = {
                 io( { server, data });
                 require('./auth')(app, data, db, 'Little secret');
 
-                require('./routers')(app, data, io);
+                require('./routers')(app, data);
 
                 return { app, server };
             });

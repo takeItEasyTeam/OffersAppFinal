@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href = '/static/css/chat-view.css')
+    .container
+        .row.form-group
+            .col-xs-12.col-md-offset-2.col-md-8.col-lg-8.col-lg-offset-2
+                .panel.panel-primary
+                    .panel-heading.text-center Чат
+                    div(.panel-body.body- id='container')
+                        ul(class="chat")
+                            li(class="left clearfix")
+                                span(class="chat-img pull-left")
+                                    img(src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle")
+                                .chat-body.clearfix
+                                    .header
+                                        strong(class="primary-font") Jack Sparrow
+                                        small(class="pull-right text-muted")
+                                            span(class="glyphicon glyphicon-time") 12 mins ago
+                                    p
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                        dolor
+                            li(class="right clearfix")
+                                span(class="chat-img pull-right")
+                                    img(src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle")
+                                .chat-body.clearfix
+                                    .header
+                                        small(class=" text-muted")
+                                            span(class="glyphicon glyphicon-time") 13 mins ago
+                                        strong(class="pull-right primary-font") Bhaumik Patel
+                                    p
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                        dolor
+                    .panel-footer.clearfix
+                        small(class="pull-right text-muted" id="typing")
+                        textarea(class="form-control" rows="3" id="message")
+                        span(class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12" style="margin-top: 10px")
+                            button(class="btn btn-primary btn-block" id="btn-chat") Изпращане
