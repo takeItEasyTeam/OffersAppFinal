@@ -14,7 +14,8 @@ module.exports = function(app, data) {
                     .then((result) => {
                         cart.add(result.context, result.context.id);
                         req.session.cart = cart;
-                        res.redirect(req.get('referer'));
+                        const BuyOfferCounter = req.session.cart.totalQty;
+                        res.send(JSON.stringify(BuyOfferCounter));
                     });
             
         })

@@ -20,7 +20,7 @@ block content
                 p Цена:
                     =item.price
                 p
-                  a.btn.btn-success(href='/addToCart/' + item.id) Купи 
+                  a.btn.btn-success.buy(href='#/',type='button', data-id=item._id) Купи
                   a.btn.btn-primary(href="/" + item.id) Информация
                 .ratings
                     p.pull-right 15 reviews
