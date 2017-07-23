@@ -62,6 +62,10 @@ $(document).ready(function(){
             template = Handlebars.compile(source);
             test = template(dataFromApi);
             $('.proba').html(test);
+            setTimeout(function(){ 
+              $('.loader').hide(); 
+            }, 0);
+            
         }
     });
   };
