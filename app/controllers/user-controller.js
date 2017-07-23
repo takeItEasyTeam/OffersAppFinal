@@ -53,5 +53,15 @@ module.exports = function(data) {
                 }
             });
         },
+        getMyOrders(req, res) {
+            const userId = req.user._id;
+
+            return data.users.getMyOrders(userId)
+                .then((orders) => {
+                    return res.render('myOrders-view', {
+                        context: orders,
+                    });
+                });
+        },
     };
 };

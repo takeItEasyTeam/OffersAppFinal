@@ -28,6 +28,7 @@ module.exports = function(app, data) {
         .post('/profile', (req, res) => {
                 controller.updateUserImage(req, res, upload);
         })
+        .get('/profile/myOrders', isLogin, controller.getMyOrders)
         .get('/logout', controller.logout);
 
     app.use('/', router);

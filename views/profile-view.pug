@@ -23,32 +23,33 @@ block content
                 table.table.table-user-information
                   tbody
                     tr
-                        td First Name:
+                        td Име:
                         td=user.firstName
                     tr
-                        td Last Name:
+                        td Фамилия:
                         td=user.lastName
                     tr
-                        td Phone number:
+                        td Телефонен номер:
                         td=user.phoneNumber
                     tr
                         td E-mail:
                         td=user.email
                     tr
-                        td Country:
+                        td Държава:
                         td=user.country
                     tr
-                        td Town: 
+                        td Град: 
                         td=user.town
-                a#my-ads.btn.btn-primary(href="/profile/myOffers") My Offers
+                a#my-ads.btn.btn-primary(href="/profile/myOffers") Моите оферти
+                a#my-orders.btn.btn-primary.pull-right(href="/profile/myOrders") История на поръчките
                 form(action="/profile" method="POST" enctype="multipart/form-data")
                     .form-group
-                    label(class="control-label" for="image") Upload profile picture
+                    label(class="control-label" for="image") Смени профилна снимка
                     input(type="file" name="image" id="file" class="form-control")
                     div(id="imgContainer" class="col-sm-12")
                     br
                     button(type="submit" class="btn btn-primary pull-right")
-                        | Save image 
+                        | Запази снимка 
                         span.glyphicon.glyphicon-send
                     br
             .panel-footer

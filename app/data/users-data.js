@@ -38,6 +38,16 @@ const getData = (db, models) => {
             return collection.updateOne({ _id: new ObjectID(id) },
                 { $set: { 'files': image } });
         },
+        getMyOrders(userId) {
+            return db.collection('orders').find({ userId: userId })
+                .toArray()
+                .then((orders) => {
+                    return orders.map((order) => {
+                        order.id = order._id;
+                        return order;
+                    });
+                });
+        },
     };
 };
 module.exports = { getData };

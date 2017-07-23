@@ -1,7 +1,7 @@
 const { ObjectID } = require('mongodb');
 
 const getData = (db) => {
-    const collection = db.collection('order');
+    const collection = db.collection('orders');
     return {
         createOrder(order) {
             return collection.insert(order)

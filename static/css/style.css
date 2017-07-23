@@ -174,3 +174,7 @@ padding: 25px;
   margin-bottom: 0;
   overflow: auto;
 }
+
+.btn-primary {
+  margin-left: 10px;
+}

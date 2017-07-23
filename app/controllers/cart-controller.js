@@ -18,7 +18,9 @@ module.exports = function(data) {
         createOrder(req, res, cart) {
                 const order = req.body;
                 order.user = req.user;
+                order.userId = req.user.id;
                 order.cart = cart;
+                order.date = new Date();
                 
                 return data.cart.createOrder(order)
                 .then((result) => {

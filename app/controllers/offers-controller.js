@@ -147,7 +147,6 @@ module.exports = function(data) {
                 comment.date = new Date();
                 comment.user = req.user._id;
                 comment.userName = req.user.username;
-                //to be implement five-star-rating
                 comment.rate = Number(req.body.rating);
 
                 return data.offers.rate(comment, query)
