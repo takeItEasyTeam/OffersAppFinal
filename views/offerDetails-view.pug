@@ -44,18 +44,25 @@ block content
   br             
   .row
     .well#well-rate
-      - for (var x = 0; x < 3; x++)
-        .row
-            .col-md-12
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star-empty
-                |                             Anonymous
-                span.pull-right 10 days ago
-                p This product was great in terms of quality. I would definitely buy another!
-        hr
+        if context.comments.length > 0
+            - context.comments.reverse();
+            for item in context.comments
+                .col-md-12
+                    - let commentDate = new Date(item.date).toLocaleString();
+                    - for (let j = 0; j < 5; j++)
+                        if item.rate >= (j+1)
+                            span.glyphicon.glyphicon-star
+                        else
+                            span.glyphicon.glyphicon-star-empty
+                    span                             
+                        =item.userName
+                    span.pull-right
+                        =commentDate
+                    p 
+                        =item.text
+                    hr
+        else
+            p Все още няма коментари за тази оферта!
     .well
       .text-right
         a.btn.btn-success#btn-add-message Оцени офертата
@@ -65,4 +72,17 @@ block content
                 .form-group
                     textarea(class="form-control" rows="6" name="message" placeholder="Добавете коментар ..." required)
                 .form-group
-                    button.btn.btn-danger(id="message-send") Изпрати оценка
+                    p Оценка: 
+                        span(class="starRating")
+                            input(id="rating5" type="radio" name="rating" value="5")
+                            label(for='rating5') 5:
+                            input(id="rating4" type="radio" name="rating" value="4")
+                            label(for='rating4') 4:
+                            input(id="rating3" type="radio" name="rating" value="3")
+                            label(for='rating3') 3:
+                            input(id="rating2" type="radio" name="rating" value="2")
+                            label(for='rating2') 2:
+                            input(id="rating1" type="radio" name="rating" value="1")
+                            label(for='rating1') 1:
+                .form-group
+                    button.btn.btn-danger.center-block(id="message-send") Изпрати оценка

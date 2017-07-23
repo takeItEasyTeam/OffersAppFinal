@@ -141,15 +141,14 @@ module.exports = function(data) {
                 const comment = {};
                 const query = req.params.id;
 
-                //let myDate = new Date();
-
                 if (req.body.message.trim() !== '') {
                     comment.text = req.body.message.trim();
                 }
                 comment.date = new Date();
                 comment.user = req.user._id;
+                comment.userName = req.user.username;
                 //to be implement five-star-rating
-                comment.rate = Number(3);
+                comment.rate = Number(req.body.rating);
 
                 return data.offers.rate(comment, query)
                     .then((result) => {

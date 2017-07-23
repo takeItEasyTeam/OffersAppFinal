@@ -23,17 +23,20 @@ block content
                   a.btn.btn-success.buy(href='#/',type='button', data-id=item._id) Купи
                   a.btn.btn-primary(href="/" + item.id) Информация
                 .ratings
-                    p.pull-right 15 reviews
+                    - let ratesSum = 0;
+                    - for (let i = 0; i < item.comments.length; i++)
+                        - ratesSum += item.comments[i].rate;
+                    - let avegareRate = ratesSum/item.comments.length || 0; 
+                    - let rateCount = item.comments.length;
+                    p.pull-right 
+                        case rateCount
+                            when 1
+                                span #{rateCount} коментар
+                            default
+                                span #{rateCount} коментара
                     p.star
-                        span.glyphicon.glyphicon-star
-                        span.glyphicon.glyphicon-star
-                        span.glyphicon.glyphicon-star
-                        span.glyphicon.glyphicon-star
-                        span.glyphicon.glyphicon-star
-
-
-                
-
-
-
-                
+                        - for (let j = 0; j < 5; j++)
+                            if avegareRate >= (j+1)
+                                span.glyphicon.glyphicon-star
+                            else
+                                span.glyphicon.glyphicon-star-empty
