@@ -42,7 +42,7 @@ html(lang='en')
 
           form.navbar-form.navbar-right(role='search' action='/search' method='GET')
             .form-group.input-group
-             input.form-control(type='text' name = 'city' placeholder='Search..')
+             input.form-control(type='text' name = 'city' placeholder='Търси...')
              span.input-group-btn
               button.btn.btn-default(type='submit')
                 span.glyphicon.glyphicon-search
@@ -50,7 +50,7 @@ html(lang='en')
             li
                 a(href='/shoppingCart')
                   span.glyphicon.glyphicon-shopping-cart
-                  |  Cart
+                  |  
                   span.badge
                     if session.cart
                       =session.cart.totalQty

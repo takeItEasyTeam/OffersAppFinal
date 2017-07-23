@@ -1,8 +1,10 @@
 extends layout
 
 block content
-    h1 Моите обяви
+    h1(class="text-center") Моите обяви
+    hr
     .row
+    if context.length >0 
       for item in context
         .col-md-3.col-sm-6.hero-feature.hvr-bob
             .thumbnail
@@ -43,3 +45,5 @@ block content
                                 span.glyphicon.glyphicon-star-empty
                     hr
                     p Брой поръчки: 
+    else
+        h3 Все още нямате публикувани оферти!

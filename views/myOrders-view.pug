@@ -3,7 +3,7 @@ extends layout
 block content
   !=messages()
   .container
-    h1(class="orders-table") История на поръчките
+    h1(class="text-center") История на поръчките
     hr
     if context.length > 0
         div.table-responsive         
@@ -11,9 +11,9 @@ block content
                 thead
                     tr(class="warning")
                         th Поръчка
-                        th(class="orders-table") Дата
-                        th(class="orders-table") Брой оферти
-                        th(class="orders-table") Обща цена
+                        th(class="text-center") Дата
+                        th(class="text-center") Брой оферти
+                        th(class="text-center") Обща цена
                 tbody
                 - context.reverse();
                 - let ordersPrice = 0;
@@ -25,14 +25,14 @@ block content
                     - ordersCount += item.cart.totalQty;
                     tr
                         td= item.id
-                        td(class="orders-table")= orderDate
-                        td(class="orders-table")= item.cart.totalQty
-                        td(class="orders-table")= item.cart.totalPrice 
+                        td(class="text-center")= orderDate
+                        td(class="text-center")= item.cart.totalQty
+                        td(class="text-center")= item.cart.totalPrice 
                             span.text  лв.
                 tr(class="warning")
                     td(colspan="2")
-                    td(class="orders-table")= ordersCount
-                    td(class="orders-table")= ordersPrice 
+                    td(class="text-center")= ordersCount
+                    td(class="text-center")= ordersPrice 
                         span.text  лв.
     else
         h3 Все още нямате направени поръчки!
