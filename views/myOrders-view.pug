@@ -1,4 +1,38 @@
 extends layout
 
 block content
-    h1 История на поръчките ще бъде визуализирана тук!
+  !=messages()
+  .container
+    h1(class="orders-table") История на поръчките
+    hr
+    if context.length > 0
+        div.table-responsive         
+            table(class="table table-hover" id="my-orders-table" data-show-toggle="false")
+                thead
+                    tr(class="warning")
+                        th Поръчка
+                        th(class="orders-table") Дата
+                        th(class="orders-table") Брой оферти
+                        th(class="orders-table") Обща цена
+                tbody
+                - context.reverse();
+                - let ordersPrice = 0;
+                - let ordersCount = 0;
+
+                for item in context
+                    - let orderDate = new Date(item.date).toLocaleDateString();
+                    - ordersPrice += item.cart.totalPrice;
+                    - ordersCount += item.cart.totalQty;
+                    tr
+                        td= item.id
+                        td(class="orders-table")= orderDate
+                        td(class="orders-table")= item.cart.totalQty
+                        td(class="orders-table")= item.cart.totalPrice 
+                            span.text  лв.
+                tr(class="warning")
+                    td(colspan="2")
+                    td(class="orders-table")= ordersCount
+                    td(class="orders-table")= ordersPrice 
+                        span.text  лв.
+    else
+        h3 Все още нямате направени поръчки!

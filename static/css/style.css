@@ -178,3 +178,7 @@ padding: 25px;
 .btn-primary {
   margin-left: 10px;
 }
+
+.orders-table {
+  text-align: center;
+}
