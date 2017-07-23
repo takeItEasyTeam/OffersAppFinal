@@ -42,7 +42,7 @@ block content
                                             span.glyphicon.glyphicon-minus
                                     input.form-control.input-number(type='text', value=product.qty, min='1', max='100')
                                     span.input-group-btn
-                                        a.btn.btn-success(href='/addToCart/' + product.item.id)
+                                        a.btn.btn-success(href='/plus/' + product.item.id)
                                             span.glyphicon.glyphicon-plus
                         .col-xs-2
                                 a.button.btn.btn-labeled.btn-danger(href='/remove/' + product.item.id, type='button')

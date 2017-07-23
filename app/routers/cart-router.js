@@ -35,6 +35,14 @@ module.exports = function(app, data) {
             req.session.cart = cart;
             res.redirect('/shopingCart');
         })
+        .get('/plus/:id', function(req, res, next) {
+            const productId = req.params.id;
+            const cart = new Cart(req.session.cart ? req.session.cart : {});
+
+            cart.plusByOne(productId);
+            req.session.cart = cart;
+            res.redirect('/shopingCart');
+        })
         .get('/remove/:id', function(req, res, next) {
             const productId = req.params.id;
             const cart = new Cart(req.session.cart ? req.session.cart : {});
