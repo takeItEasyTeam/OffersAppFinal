@@ -4,7 +4,7 @@ block content
     != messages()
     .col-md-5.col-md-offset-3
         .panel.panel-primary
-            .panel-heading.text-center Create Offer
+            .panel-heading.text-center Промени офертата
             .panel-body
                 form(action="/edit/" + context._id method="POST"  enctype="multipart/form-data")
                     .form-group
@@ -20,7 +20,10 @@ block content
                         input(id="city" name="city" class="form-control" type="text" value=context.city)
                     .form-group
                         label(class="control-label" for="validity") Валидност
-                        input(id="validity" name="validity" class="form-control" type="text" value=context.validity)
+                        div(class='input-group date' id='datetimepicker2')
+                            input(type='text' id="validity" class="form-control" name="validity" value=context.validity)
+                            span(class="input-group-addon")
+                                span(class="glyphicon glyphicon-calendar")
                     .form-group
                         label(class="control-label" for="price") Цена на човек/ден
                         input(id="price" name="price" class="form-control" type="text" value=context.price)
@@ -29,5 +32,5 @@ block content
                         input(type="file" name="image" id="file" class="form-control" multiple="multiple")
                         div(id="imgContainer" class="col-sm-12")
                     .form-group
-                        button(id="btnRegister" type="submit" class="btn btn-primary btn-block") Edit
+                        button(id="btnRegister" type="submit" class="btn btn-primary btn-block") Запази промените
     script(src='/static/js/show-image.js')

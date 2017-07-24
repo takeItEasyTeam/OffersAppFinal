@@ -91,7 +91,14 @@ $(document).ready(function(){
   });
 
   $(function () {
-    $('#datetimepicker').datetimepicker();
+    let dateNow = new Date();
+    $('#datetimepicker').datetimepicker({
+      locale: 'bg', 
+      defaultDate: moment(dateNow).hours(23).minutes(59).seconds(59).milliseconds(0)
+    });
+    $('#datetimepicker2').datetimepicker({
+      locale: 'bg' 
+    });
   });
 });
 
