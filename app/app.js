@@ -3,7 +3,7 @@
 const { configApp } = require('./config/configApp');
 const { connect } = require('./db');
 const { initData } = require('./data');
-const io = require('./config/sockets-config');
+const socketConfig = require('./config/sockets-config');
 
 module.exports = {
     getApp(connectionString) {
@@ -14,9 +14,11 @@ module.exports = {
             .then((db) => {
                 const data = initData(db);
                 const server = require('http').Server(app);
-                io( { server, data });
-                require('./auth')(app, data, db, 'Little secret');
+                const io = require('socket.io')(server);
 
+                require('./auth')(app, data, db, 'Little secret', io);
+
+                socketConfig( { io, data });
                 require('./routers')(app, data);
 
                 return { app, server };

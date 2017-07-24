@@ -1,14 +1,14 @@
-module.exports = function({ server, data }) {
-        const io = require('socket.io')(server);
+module.exports = function({ io, data }) {
         io.sockets.on('connection', function(socket) {
-            console.log('socket id', socket.id);
             socket.on('message', (message) =>{
-                console.log(message);
-                io.sockets.emit('message', message);
+
+                io.sockets.emit('message', {
+                    user: socket.request.user,
+                    message: message,
+                });
             });
             socket.on('typing', (message) => {
-                console.log(message);
-                socket.broadcast.emit('typing', message);
+                socket.broadcast.emit('typing', { user: socket.request.user });
             });
         });
 

@@ -4,8 +4,9 @@ const { Strategy } = require('passport-local');
 const bcrypt = require('bcryptjs');
 const MongoStore = require('connect-mongo')(session);
 const { connect } = require('../db');
+const passportSocketIo = require('passport.socketio');
 
-module.exports = (app, { users }, db, secret) => {
+module.exports = (app, { users }, db, secret, io) => {
     passport.use(new Strategy((username, password, done) => {
         users.findBy({ username: username })
             .then((user) => {
@@ -35,12 +36,12 @@ module.exports = (app, { users }, db, secret) => {
                 // return done(null, user);
             });
     }));
-
+    const mongoStore = new MongoStore({ db });
     app.use(session({
         secret,
         resave: true,
         saveUninitialized: true,
-        store: new MongoStore({ db }),
+        store: mongoStore,
         cookie: { maxAge: 180 * 60 * 1000 },
     }));
     app.use(passport.initialize());
@@ -72,4 +73,25 @@ module.exports = (app, { users }, db, secret) => {
         res.locals.session = req.session;
         next();
     });
+
+    // socket.io and passport setup
+
+    io.use(passportSocketIo.authorize({
+        secret: secret,
+        store: mongoStore,
+        success: onAuthorizeSuccess,
+        fail: onAuthorizeFail,
+    }));
+
+    function onAuthorizeSuccess(data, accept) {
+        console.log('successful connection to socket.io');
+
+        accept();
+    }
+
+    function onAuthorizeFail(data, message, error, accept) {
+        if (error) {
+            accept(new Error(message));
+        }
+}
 };
