@@ -89,5 +89,9 @@ $(document).ready(function(){
     $('#message-form').toggleClass('hidden');
     $('#btn-add-message').toggleClass('btn-success');
   });
+
+  $(function () {
+    $('#datetimepicker').datetimepicker();
+  });
 });
 

@@ -5,6 +5,7 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/libs/bootstrap/dist/css/bootstrap.min.css')
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css")
     link(rel='stylesheet', href = '/static/css/style.css')
     link(rel='stylesheet', href = '/static/css/rating.css')
 
@@ -77,6 +78,8 @@ html(lang='en')
           div(class="alert alert-danger") #{error.msg}
       block content
       script(src='/libs/handlebars/dist/handlebars.js')
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js")
       script(src='../static/js/main.js')
     br
     footer

@@ -20,7 +20,11 @@ block content
                         input(id="city" name="city" class="form-control" type="text")
                     .form-group
                         label(class="control-label" for="validity") Валидност
-                        input(id="validity" name="validity" class="form-control" type="text")
+                        div(class='input-group date' id='datetimepicker')
+                            input(type='text' id="validity" class="form-control" name="validity")
+                            span(class="input-group-addon")
+                                span(class="glyphicon glyphicon-calendar")
+                        // input(id="validity" name="validity" class="form-control" type="text")
                     .form-group
                         label(class="control-label" for="price") Цена на човек/ден
                         input(id="price" name="price" class="form-control" type="text")
