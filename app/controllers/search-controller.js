@@ -1,4 +1,4 @@
-module.exports = function(data) {
+module.exports = function(data, validator) {
     return {
         findOffers(req, res) {
             const filter = req.query.city;
@@ -36,6 +36,6 @@ module.exports = function(data) {
                 .then((offers) => {
                     return res.send( { context: offers } );
                 });
-        }
+        },
     };
 };

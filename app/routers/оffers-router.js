@@ -5,8 +5,8 @@ const multer = require('multer');
 const upload = multer({ dest: 'static/images' }).array('image', 3);
 
 
-module.exports = function(app, data) {
-    const controller = require('../controllers/offers-controller')(data);
+module.exports = function(app, data, validator) {
+    const controller = require('../controllers/offers-controller')(data, validator);
 
     const router = new Router();
 
@@ -31,7 +31,7 @@ module.exports = function(app, data) {
         .delete('/:id', controller.delete)
         .post('/rate/:id', isLogin, (req, res) => {
             controller.rate(req, res, upload);
-        })
+        });
 
     app.use('/', router);
 };

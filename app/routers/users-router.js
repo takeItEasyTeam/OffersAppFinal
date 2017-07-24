@@ -5,8 +5,8 @@ const { isLogin, frontRegisterUserValidation } = require('../utils/auth-validati
 const multer = require('multer');
 const upload = multer({ dest: 'static/images/users' }).array('image', 1);
 
-module.exports = function(app, data) {
-    const controller = require('../controllers/user-controller')(data);
+module.exports = function(app, data, validator) {
+    const controller = require('../controllers/user-controller')(data, validator);
 
     const router = new Router();
 

@@ -1,7 +1,7 @@
 const { ObjectID } = require('mongodb');
 
 
-const getData = (db, models) => {
+const getData = (db) => {
     const collection = db.collection('users');
     return {
         findBy(props) {
@@ -32,7 +32,7 @@ const getData = (db, models) => {
             return collection.insert(user)
                 .then((result) => {
                     return user;
-                });
+            });
         },
         updateImage(id, image) {
             return collection.updateOne({ _id: new ObjectID(id) },

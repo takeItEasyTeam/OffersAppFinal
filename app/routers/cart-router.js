@@ -2,8 +2,8 @@ const { Router } = require('express');
 const Cart = require('../model/cart');
 const { isLogin } = require('../utils/auth-validation');
 
-module.exports = function(app, data) {
-    const controller = require('../controllers/cart-controller')(data);
+module.exports = function(app, data, validator) {
+    const controller = require('../controllers/cart-controller')(data, validator);
 
     const router = new Router();
 
@@ -17,7 +17,6 @@ module.exports = function(app, data) {
                         const BuyOfferCounter = req.session.cart.totalQty;
                         res.send(JSON.stringify(BuyOfferCounter));
                     });
-            
         })
         .get('/shoppingCart', function(req, res) {
             if (!req.session.cart) {
