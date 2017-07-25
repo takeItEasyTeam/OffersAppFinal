@@ -24,7 +24,7 @@ module.exports = function(app, data, validator) {
             }
 
             const cart = new Cart(req.session.cart);
-            return res.render('shoppingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice })
+            return res.render('shoppingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice });
         })
         .get('/reduce/:id', function(req, res, next) {
             const productId = req.params.id;
@@ -50,10 +50,10 @@ module.exports = function(app, data, validator) {
             req.session.cart = cart;
             res.redirect('/shoppingCart');
         })
-        .get('/checkout', isLogin, function(req, res){
+        .get('/checkout', isLogin, function(req, res) {
             res.render('checkout-view');
         })
-        .get('/deleteCart', function(req, res){
+        .get('/deleteCart', function(req, res) {
             req.session.cart = null;
             res.redirect('/shoppingCart');
         })

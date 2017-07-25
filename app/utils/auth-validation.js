@@ -1,9 +1,8 @@
 function isLogin(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
-  } else {
-    res.redirect('/login');
   }
+    res.redirect('/login');
 }
 
 function frontRegisterUserValidation(req, res, next) {
@@ -35,7 +34,7 @@ function frontRegisterUserValidation(req, res, next) {
   req.checkBody('town', 'Town is required').notEmpty();
   req.checkBody('town', 'Town must contain between 1 and 30 characters').len(1, 30);
 
-  let errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     res.render('register-view', {
@@ -46,4 +45,4 @@ function frontRegisterUserValidation(req, res, next) {
   }
 }
 
-module.exports = { isLogin, frontRegisterUserValidation }
+module.exports = { isLogin, frontRegisterUserValidation };

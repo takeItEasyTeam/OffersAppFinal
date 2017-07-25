@@ -10,7 +10,6 @@ module.exports = function(data, validator) {
                 });
         },
         sortOffers(req, res) {
-
             console.log(req.query.priceHight);
             let offerType;
 

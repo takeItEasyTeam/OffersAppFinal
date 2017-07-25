@@ -137,7 +137,6 @@ module.exports = function(data, validator) {
         },
         rate(req, res, upload) {
             upload(req, res, (err) => {
-
                 const comment = {};
                 const query = req.params.id;
 

@@ -8,7 +8,7 @@ const getData = (db) => {
                 .then((result) => {
                     return order;
                 });
-        },   
+        },
     };
 };
 

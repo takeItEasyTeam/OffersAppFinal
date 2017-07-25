@@ -21,7 +21,7 @@ module.exports = function(data, validator) {
                 order.userId = req.user.id;
                 order.cart = cart;
                 order.date = new Date();
-                
+
                 return data.cart.createOrder(order)
                 .then((result) => {
                     req.session.cart = null;

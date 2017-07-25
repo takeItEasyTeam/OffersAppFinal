@@ -29,7 +29,7 @@ const configApp = () => {
     // Express Validator Middleware
     app.use(expressValidator({
         errorFormatter: function(param, msg, value) {
-            var namespace = param.split('.'),
+            let namespace = param.split('.'),
                 root = namespace.shift(),
                 formParam = root;
 

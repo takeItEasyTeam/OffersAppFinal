@@ -22,9 +22,8 @@ module.exports = (app, { users }, db, secret, io) => {
                     if (err) throw err;
                     if (isMatch) {
                         return done(null, user);
-                    } else {
-                        return done(null, false, { message: 'Wrong password' });
                     }
+                        return done(null, false, { message: 'Wrong password' });
                 });
 
                 // if (user.password !== password) {
