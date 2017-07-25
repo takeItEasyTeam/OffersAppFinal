@@ -10,29 +10,32 @@ module.exports = function(data, validator) {
         },
         register(req, res) {
             const user = req.body;
-            validator.validateRegistrationFormFields(user)
-                .then(() => {
-                    /* hash password */
-                    bcrypt.hash(req.body.password, 10, function(err, hash) {
-                        const password = hash;
-                        const username = req.body.username;
-                        const firstName = req.body.firstName;
-                        const lastName = req.body.lastName;
-                        const email = req.body.email;
-                        const phoneNumber = req.body.phoneNumber;
-                        const country = req.body.country;
-                        const town = req.body.town;
-                        return data.users.create(username, password, firstName, lastName, email, phoneNumber, country, town)
-                            .then(() => {
-                                req.flash('success', 'You are now registered and can log in');
-                                res.redirect('/login');
+            const username = req.body.username;
+            const firstName = req.body.firstName;
+            const lastName = req.body.lastName;
+            const email = req.body.email;
+            const phoneNumber = req.body.phoneNumber;
+            const country = req.body.country;
+            const town = req.body.town;
+            data.users.findBy( { 'username': req.body.username })
+                .then((response) => {
+                    validator.validateRegistrationFormFields(user, response)
+                        .then(() => {
+                        /* hash password */
+                            bcrypt.hash(req.body.password, 10, function(err, hash) {
+                                const password = hash;
+                                return data.users.create(username, password, firstName, lastName, email, phoneNumber, country, town)
+                                    .then(() => {
+                                        req.flash('success', 'You are now registered and can log in');
+                                        res.redirect('/login');
+                                    });
                             });
+                        })
+                        .catch((error) => {
+                            req.flash('error', error);
+                            res.redirect('/register');
                         });
-                })
-                    .catch((error) => {
-                        req.flash('error', error);
-                        res.redirect('/register');
-                    });
+                });
         },
         logout(req, res) {
             req.logout();

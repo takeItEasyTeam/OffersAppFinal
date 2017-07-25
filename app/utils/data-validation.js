@@ -1,6 +1,6 @@
 const constants = require('./constants');
 
-function validateRegistrationFormFields(user) {
+function validateRegistrationFormFields(user, data) {
     const username = user.username;
     const password = user.password;
     const firstName = user.firstName;
@@ -23,7 +23,7 @@ function validateRegistrationFormFields(user) {
             validateValueLength(1, 30, country, constants.invalidCountry);
             validateValueLength(1, 30, town, constants.invalidTown);
             validateValueLength(3, 15, password, constants.invalidPassword);
-
+            validateUniqueValue(username, data, constants.uniqueUsername);
             resolve('Success');
         } catch (error) {
             reject(error);
@@ -36,7 +36,7 @@ function validateRegistrationFormFields(user) {
 module.exports = { validateRegistrationFormFields };
 
 function validateValueLength(min, max, value, errorMessage) {
-    if (min >= value.length || value.length >= max) {
+    if (min > value.length || value.length > max) {
         throw errorMessage;
     }
 }
@@ -44,6 +44,12 @@ function validateValueLength(min, max, value, errorMessage) {
 function validateWithRegex(value, regex, errorMessage) {
     const regexExp = new RegExp(regex);
     if (!regexExp.exec(value)) {
+        throw errorMessage;
+    }
+}
+
+function validateUniqueValue(value, data, errorMessage) {
+    if (data !== null && value === data.username) {
         throw errorMessage;
     }
 }

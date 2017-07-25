@@ -38,7 +38,6 @@ $(document).ready(function() {
         img.addClass('img-responsive');
         img.addClass('img-chat');
         img.attr('alt', 'User Avatar');
-        console.log(data);
         if (data.user.files && data.user.files.length !== 0) {
             img.attr('src', data.user.files[0].path);
         } else {
