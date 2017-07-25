@@ -1,12 +1,14 @@
 const { Router } = require('express');
 // const { getController } = require('./controller');
 const passport = require('passport');
-const { isLogin, frontRegisterUserValidation } = require('../utils/auth-validation');
+const { isLogin,
+    frontRegisterUserValidation } = require('../utils/auth-validation');
 const multer = require('multer');
 const upload = multer({ dest: 'static/images/users' }).array('image', 1);
 
 module.exports = function(app, data, validator) {
-    const controller = require('../controllers/user-controller')(data, validator);
+    const controller = require('../controllers/user-controller')(data,
+        validator);
 
     const router = new Router();
 
@@ -26,7 +28,7 @@ module.exports = function(app, data, validator) {
         )
         .get('/profile', isLogin, controller.getUserProfile)
         .post('/profile', (req, res) => {
-                controller.updateUserImage(req, res, upload);
+            controller.updateUserImage(req, res, upload);
         })
         .get('/profile/myOrders', isLogin, controller.getMyOrders)
         .get('/logout', controller.logout);

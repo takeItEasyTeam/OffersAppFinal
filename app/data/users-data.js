@@ -1,6 +1,5 @@
 const { ObjectID } = require('mongodb');
 
-
 const getData = (db) => {
     const collection = db.collection('users');
     return {
@@ -18,7 +17,8 @@ const getData = (db) => {
                     return user;
                 });
         },
-        create(username, password, firstName, lastName, email, phoneNumber, country, town) {
+        create(username, password, firstName, lastName,
+            email, phoneNumber, country, town) {
             const user = {
                 username,
                 password,
@@ -32,7 +32,7 @@ const getData = (db) => {
             return collection.insert(user)
                 .then((result) => {
                     return user;
-            });
+                });
         },
         updateImage(id, image) {
             return collection.updateOne({ _id: new ObjectID(id) },

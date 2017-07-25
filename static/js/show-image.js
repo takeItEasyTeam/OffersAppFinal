@@ -25,10 +25,10 @@ $('document').ready((req, res) => {
                 const fileReader = new FileReader();
                 fileReader.onload = function(e) {
                     $('<img>')
-                    .attr('class', 'offer-image')
-                    .attr('src', e.target.result)
-                    .addClass('img-thumbnail')
-                    .appendTo(imgContainer);
+                        .attr('class', 'offer-image')
+                        .attr('src', e.target.result)
+                        .addClass('img-thumbnail')
+                        .appendTo(imgContainer);
                 };
                 fileReader.readAsDataURL(image);
             }

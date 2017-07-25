@@ -18,7 +18,7 @@ module.exports = {
 
                 require('./auth')(app, data, db, 'Little secret', io);
 
-                socketConfig( { io, data });
+                socketConfig({ io, data });
                 require('./routers')(app, data);
 
                 return { app, server };

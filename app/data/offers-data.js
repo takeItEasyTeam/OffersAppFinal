@@ -2,6 +2,11 @@ const { ObjectID } = require('mongodb');
 
 const getData = (db) => {
     const collection = db.collection('offers');
+    const orders = db.collection('orders');
+
+    function getOfferCount(id) {
+        return 42;
+    }
     return {
         getAll() {
             return collection.find({})
@@ -38,12 +43,13 @@ const getData = (db) => {
                     });
                 });
         },
-       getMyOffers(userId) {
+        getMyOffers(userId) {
             return collection.find({ author: userId })
                 .toArray()
                 .then((offers) => {
                     return offers.map((offer) => {
                         offer.id = offer._id;
+                        offer.count = getOfferCount(offer._id);
                         return offer;
                     });
                 });
@@ -53,7 +59,7 @@ const getData = (db) => {
                 { $set: updates });
         },
         delete(offer, query, res) {
-            return collection.remove( { _id: new ObjectID(query) })
+            return collection.remove({ _id: new ObjectID(query) })
                 .then((result) => {
                     res.send('Success');
                 });
@@ -65,24 +71,25 @@ const getData = (db) => {
                 });
         },
         getOffersByFilter(filter) {
-            return collection.find( { city: new RegExp(filter, 'i') })
-        .toArray()
-        .then((offers) => {
-            return offers.map((offer) => {
-                offer.id = offer._id;
-                    return offer;
+            return collection.find({ city: new RegExp(filter, 'i') })
+                .toArray()
+                .then((offers) => {
+                    return offers.map((offer) => {
+                        offer.id = offer._id;
+                        return offer;
+                    });
                 });
-            });
         },
         sortOffers(order, offerType) {
-            return collection.find( { destination: offerType }).sort({ price: order })
-            .toArray()
-            .then((offers) => {
-                return offers.map((offer) => {
-                    offer.id = offer._id;
+            return collection.find({ destination: offerType })
+                .sort({ price: order })
+                .toArray()
+                .then((offers) => {
+                    return offers.map((offer) => {
+                        offer.id = offer._id;
                         return offer;
+                    });
                 });
-            });
         },
         rate(comment, query) {
             return collection.updateOne({ _id: new ObjectID(query) },

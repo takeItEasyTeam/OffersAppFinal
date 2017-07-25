@@ -83,7 +83,7 @@ module.exports = function(data, validator) {
                 const updates = {};
                 const query = req.params.id;
 
-                if (req.body.destination !== undefined) {
+                if (req.body.destination !== '') {
                     updates.destination = req.body.destination.trim();
                 }
                 if (req.body.city.trim() !== '') {
@@ -106,7 +106,8 @@ module.exports = function(data, validator) {
                         res.redirect('/');
                     })
                     .catch((error) => {
-                        req.flash('error', 'Please enter information for updating');
+                        req.flash('error',
+                         'Моля въведете информация за промяна!');
                         res.redirect('/edit/' + offerId);
                     });
             });
@@ -120,7 +121,7 @@ module.exports = function(data, validator) {
         create(req, res, upload) {
             upload(req, res, (err) => {
                 if (err) {
-                    req.flash('error', 'You can upload only 3 pictures!');
+                    req.flash('error', 'Може да качите само до 3 снимки!');
                     res.redirect('/createOffer');
                 }
                 const offer = req.body;

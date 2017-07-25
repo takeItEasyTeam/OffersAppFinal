@@ -27,13 +27,13 @@ module.exports = function(data, validator) {
                     offerType = 'Екскурзия';
                     break;
                 default: offerType = 'None';
-                break;
+                    break;
             }
             console.log(offerType);
             const order = Number(req.body.order);
             return data.offers.sortOffers(order, offerType)
                 .then((offers) => {
-                    return res.send( { context: offers } );
+                    return res.send({ context: offers });
                 });
         },
     };
