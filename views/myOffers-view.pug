@@ -22,9 +22,9 @@ block content
                     p Цена:
                         =item.price
                     p
-                    a.btn.btn-success(href='/edit/' + item._id) Промени 
-                    a.btn.btn-primary(href='/' + item._id) Инфо
-                    a.btn.btn-danger.delete-offer(href='#',data-id=item._id) Изтрий
+                        a.btn.btn-success(href='/edit/' + item._id) Промени 
+                        a.btn.btn-primary(href='/' + item._id) Инфо
+                        a.btn.btn-danger.delete-offer(href='#',data-id=item._id) Изтрий
                 .ratings
                     - let ratesSum = 0;
                     - for (let i = 0; i < item.comments.length; i++)
