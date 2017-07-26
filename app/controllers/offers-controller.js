@@ -84,7 +84,7 @@ module.exports = function(data, validator) {
                 const query = req.params.id;
 
                 if (req.body.destination !== '') {
-                    updates.destination = req.body.destination.trim();
+                    updates.destination = req.body.destination;
                 }
                 if (req.body.city.trim() !== '') {
                     updates.city = req.body.city.trim();
@@ -93,7 +93,7 @@ module.exports = function(data, validator) {
                     updates.validity = req.body.validity.trim();
                 }
                 if (req.body.price.trim() !== '') {
-                    updates.price = req.body.price.trim();
+                    updates.price = Number(req.body.price);
                 }
                 if ( req.files.length !== 0) {
                     updates.files = req.files;
