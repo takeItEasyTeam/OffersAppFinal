@@ -7,6 +7,11 @@ module.exports = function(app, data, validator) {
 
     router
         .get('/search', controller.findOffers)
+        .get('/sea/search', controller.findOffers)
+        .get('/mountain/search', controller.findOffers)
+        .get('/spa/search', controller.findOffers)
+        .get('/excursion/search', controller.findOffers)
+        .get('/profile/myOffers/search', controller.findOffers)
         .post('/sort', controller.sortOffers);
 
     app.use('/', router);

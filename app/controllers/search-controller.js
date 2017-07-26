@@ -1,7 +1,30 @@
 module.exports = function(data, validator) {
     return {
         findOffers(req, res) {
-            const filter = req.query.city;
+            const url = req.route.path;
+            let offerType;
+            let author;
+            if (url === '/sea' || url === '/sea/search') {
+                offerType = 'Море';
+            } else if (url === '/mountain' || url === '/mountain/search') {
+                offerType = 'Планина';
+            } else if (url === '/spa' || url === '/spa/search') {
+                offerType = 'СПА';
+            } else if (url === '/excursion' || url === '/excursion/search') {
+                offerType = 'Екскурзия';
+            } else if (url === '/profile/myOffers' || url === '/profile/myOffers/search') {
+                author = req.user._id;
+            }
+            let filter;
+            const city = req.query.city;
+
+            if (offerType !== undefined) {
+                filter = { destination: offerType, city: city };
+            } else if (author !== undefined) {
+                filter = { author: author, city: city };
+            } else {
+                filter = { city: city };
+            }
             return data.offers.getOffersByFilter(filter)
                 .then((offers) => {
                     return res.render('allOffers-view', {

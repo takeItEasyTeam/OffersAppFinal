@@ -71,7 +71,11 @@ const getData = (db) => {
                 });
         },
         getOffersByFilter(filter) {
-            return collection.find({ city: new RegExp(filter, 'i') })
+             if (filter.author) {
+                filter.author = new ObjectID(filter.author);
+            }
+            filter.city = new RegExp(filter.city, 'i');
+            return collection.find(filter)
                 .toArray()
                 .then((offers) => {
                     return offers.map((offer) => {

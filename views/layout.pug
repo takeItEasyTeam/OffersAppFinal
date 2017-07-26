@@ -27,7 +27,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
           a.navbar-brand(rel='home', href='#', title='Buy Sell Everyting')
-            img(style='max-width:110px; margin-top: -27px;', src='../static/images/logo2.png')
+            img(style='max-width:110px; margin-top: -27px;', src='/static/images/logo2.png')
 
         #myNavbar.collapse.navbar-collapse
           ul.nav.navbar-nav
@@ -42,7 +42,7 @@ html(lang='en')
             li.hvr-float-shadow
               a(href='/excursion') Екскурзия
 
-          form.navbar-form.navbar-right(role='search' action='/search' method='GET')
+          form.navbar-form.navbar-right(id="search" role='search' action='/search' method='GET')
             .form-group.input-group
              input.form-control(type='text' name = 'city' placeholder='Търси...')
              span.input-group-btn
@@ -81,7 +81,7 @@ html(lang='en')
       script(src='/libs/handlebars/dist/handlebars.js')
       script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js")
       script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js")
-      script(src='../static/js/main.js')
+      script(src='/static/js/main.js')
     br
     footer
       .footerHeader

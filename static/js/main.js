@@ -1,3 +1,5 @@
+/* globals $ */
+
 $(document).ready(function() {
     $('.delete-offer').on('click', function(e) {
         $target = $(e.target);
@@ -119,5 +121,19 @@ $(document).ready(function() {
         $('#datetimepicker2').datetimepicker({
         });
     });
-});
 
+    const path = window.location.pathname;
+    const searchForm = $('#search');
+
+    if (path === '/sea' || path === '/mountain'
+        || path === '/spa' || path ==='/excursion'
+        || path === '/profile/myOffers') {
+        searchForm.attr('action', path + '/search');
+    }
+
+    if (path === '/sea/search' || path === '/mountain/search'
+        || path === '/spa/search' || path ==='/excursion/search'
+        || path === '/profile/myOffers/search') {
+        searchForm.attr('action', path);
+    }
+});
