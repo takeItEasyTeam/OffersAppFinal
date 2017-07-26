@@ -39,7 +39,7 @@ block content
                 =context.city
             li Цена: 
                 =context.price
-            li Валидност на офертата/дни: 
+            li Валидност на офертата до: 
                 =context.validity
   br             
   .row
@@ -48,7 +48,6 @@ block content
             - context.comments.reverse();
             for item in context.comments
                 .col-md-12
-                    - let commentDate = new Date(item.date).toLocaleString();
                     - for (let j = 0; j < 5; j++)
                         if item.rate >= (j+1)
                             span.glyphicon.glyphicon-star
@@ -57,7 +56,7 @@ block content
                     span                             
                         =item.userName
                     span.pull-right
-                        =commentDate
+                        =moment(item.date).format('DD.MM.YYYY h:mm')
                     p 
                         =item.text
                     hr

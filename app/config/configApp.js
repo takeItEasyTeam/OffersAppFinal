@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 
 const configApp = () => {
     const app = express();
+    app.locals.moment = require('moment');
 
     app.set('view engine', 'pug');
     app.use(bodyParser.urlencoded({ extended: false }));

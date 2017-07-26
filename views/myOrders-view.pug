@@ -20,12 +20,12 @@ block content
                 - let ordersCount = 0;
 
                 for item in context
-                    - let orderDate = new Date(item.date).toLocaleDateString();
+                    - let orderDate = new Date(item.date);
                     - ordersPrice += item.cart.totalPrice;
                     - ordersCount += item.cart.totalQty;
                     tr
                         td= item.id
-                        td(class="text-center")= orderDate
+                        td(class="text-center") #{moment(orderDate).format('MM/DD/YYYY HH:mm')}
                         td(class="text-center")= item.cart.totalQty
                         td(class="text-center")= item.cart.totalPrice 
                             span.text  лв.

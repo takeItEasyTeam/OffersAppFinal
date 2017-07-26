@@ -9,7 +9,8 @@ block content
                 form(action="/edit/" + context._id method="POST"  enctype="multipart/form-data")
                     .form-group
                         label(for='destination') Дестинация
-                        select#sel1.form-control(name='destination')
+                        input(id="destination" name="destination" class="form-control" type="text" value=context.destination  disabled)
+                        // select#sel1.form-control(name='destination')
                             option(selected='', disabled='') Моля изберете
                             option Море
                             option Планина
