@@ -2,8 +2,8 @@ const { Router } = require('express');
 const Cart = require('../model/cart');
 const { isLogin } = require('../utils/auth-validation');
 
-module.exports = function(app, data, validator) {
-    const controller = require('../controllers/cart-controller')(data, validator);
+module.exports = function(app, data) {
+    const controller = require('../controllers/cart-controller')(data);
 
     const router = new Router();
 

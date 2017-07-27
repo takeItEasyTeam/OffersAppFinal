@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-module.exports = function(data, validator) {
+module.exports = function(data) {
     return {
         getLoginForm(req, res) {
             res.render('login-view');
@@ -17,24 +17,26 @@ module.exports = function(data, validator) {
             const phoneNumber = req.body.phoneNumber;
             const country = req.body.country;
             const town = req.body.town;
-            data.users.findBy( { 'username': req.body.username })
+            return data.users.findBy( { 'username': req.body.username })
                 .then((response) => {
-                    validator.validateRegistrationFormFields(user, response)
-                        .then(() => {
-                        /* hash password */
-                            bcrypt.hash(req.body.password, 10, function(err, hash) {
-                                const password = hash;
-                                return data.users.create(username, password, firstName, lastName, email, phoneNumber, country, town)
-                                    .then(() => {
-                                        req.flash('success', 'You are now registered and can log in');
-                                        res.redirect('/login');
-                                    });
-                            });
-                        })
-                        .catch((error) => {
-                            req.flash('error', error);
-                            res.redirect('/register');
-                        });
+                    /* hash password */
+                    bcrypt.hash(req.body.password, 10, function(err, hash) {
+                        const userPassword = req.body.password;
+                        const password = hash;
+                            return data.users.create(username, password, firstName, lastName, email, phoneNumber, country, town, userPassword, response)
+                                .then(() => {
+                                    req.flash('success', 'You are now registered and can log in');
+                                    res.redirect('/login');
+                                })
+                                .catch((error) => {
+                                    req.flash('error', error);
+                                    res.redirect('/register');
+                                });
+                    });
+                })
+                .catch((error) => {
+                    req.flash('error', error);
+                    res.redirect('/register');
                 });
         },
         logout(req, res) {
@@ -53,15 +55,16 @@ module.exports = function(data, validator) {
                 }
                 const userId = req.session.passport.user;
                 const image = req.files;
-                if (image.length !== 0) {
-                    data.users.updateImage(userId, image)
-                    .then(() => {
-                        res.redirect('/profile');
-                    });
-                } else {
-                    req.flash('error', 'You must select a picture first');
-                    res.redirect('/profile');
-                }
+
+                return data.users.updateImage(userId, image)
+                        .then(() => {
+                            res.redirect('/profile');
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            req.flash('error', error);
+                            res.redirect('/profile');
+                        });
             });
         },
         getMyOrders(req, res) {

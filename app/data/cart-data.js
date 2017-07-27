@@ -1,6 +1,6 @@
 const { ObjectID } = require('mongodb');
 
-const getData = (db) => {
+const getData = (db, validator) => {
     const collection = db.collection('orders');
     return {
         createOrder(order) {

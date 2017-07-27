@@ -1,6 +1,7 @@
 module.exports = {
     emailRegex: /^\w+@[a-zA-Z.]+$/,
     onlyDigitsRegex: /^[0-9\+ ]+$/,
+    dateRegex: /\d{2}\/\d{2}\/\d{4}\s\d{2}\:\d{2}\s[A-Z]{2}/,
     invalidUsername: 'Username must be between 3 and 15 characters',
     uniqueUsername: 'The username is already registered',
     invalidPassword: 'Password must be between 3 and 15 characters',
@@ -9,5 +10,11 @@ module.exports = {
     invalidEmail: 'Invalid email',
     invalidNumber: 'Phone number must contain only digits',
     invalidCountry: 'Country must be between 1 and 30 characters',
+    invalidOfferType: 'Invalid offer type',
     invalidTown: 'Town must be between 1 and 30 characters',
+    invalidDateFormat: 'Invalid Date Format',
+    invalidPrice: 'Price must contain only digits',
+    invalidDescription: 'Description must be between 5 and 150 characters',
+    invalidNumberOfPictures: 'You can upload only 3 pictures',
+    invalidUserImageLength: 'You must select one picture',
 };

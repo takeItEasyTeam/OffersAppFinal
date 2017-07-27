@@ -6,9 +6,8 @@ const { isLogin,
 const multer = require('multer');
 const upload = multer({ dest: 'static/images/users' }).array('image', 1);
 
-module.exports = function(app, data, validator) {
-    const controller = require('../controllers/user-controller')(data,
-        validator);
+module.exports = function(app, data) {
+    const controller = require('../controllers/user-controller')(data);
 
     const router = new Router();
 

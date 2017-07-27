@@ -1,4 +1,4 @@
-module.exports = function(data, validator) {
+module.exports = function(data) {
     return {
         findOffers(req, res) {
             const url = req.route.path;

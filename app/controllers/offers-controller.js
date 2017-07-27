@@ -1,4 +1,4 @@
-module.exports = function(data, validator) {
+module.exports = function(data) {
     return {
         getAll(req, res) {
             return data.offers.getAll()
@@ -131,9 +131,13 @@ module.exports = function(data, validator) {
                 offer.author = req.user._id;
                 offer.comments = [];
                 return data.offers.create(offer)
-                .then((result) => {
-                res.redirect('/');
-                });
+                        .then((result) => {
+                            res.redirect('/');
+                        })
+                        .catch((error) => {
+                            req.flash('error', error);
+                            res.redirect('/createOffer');
+                        });
             });
         },
         rate(req, res, upload) {

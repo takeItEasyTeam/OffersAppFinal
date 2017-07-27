@@ -1,6 +1,6 @@
 const { ObjectID } = require('mongodb');
 
-const getData = (db) => {
+const getData = (db, validator) => {
     const collection = db.collection('users');
     return {
         findBy(props) {
@@ -18,7 +18,7 @@ const getData = (db) => {
                 });
         },
         create(username, password, firstName, lastName,
-            email, phoneNumber, country, town) {
+            email, phoneNumber, country, town, userPassword, response) {
             const user = {
                 username,
                 password,
@@ -29,14 +29,23 @@ const getData = (db) => {
                 country,
                 town,
             };
-            return collection.insert(user)
-                .then((result) => {
-                    return user;
+
+            user.password = userPassword;
+            return validator.validateRegistrationFormFields(user, response)
+                .then(() => {
+                    user.password = password;
+                    return collection.insert(user)
+                        .then((result) => {
+                            return user;
+                        });
                 });
         },
         updateImage(id, image) {
-            return collection.updateOne({ _id: new ObjectID(id) },
-                { $set: { 'files': image } });
+            return validator.validateUserImage(image)
+                .then(() => {
+                    return collection.updateOne({ _id: new ObjectID(id) },
+                        { $set: { 'files': image } });
+                });
         },
         getMyOrders(userId) {
             return db.collection('orders').find({ userId: userId })

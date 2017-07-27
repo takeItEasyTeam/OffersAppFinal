@@ -1,6 +1,6 @@
 const { ObjectID } = require('mongodb');
 
-const getData = (db) => {
+const getData = (db, validator) => {
     const collection = db.collection('offers');
     const orders = db.collection('orders');
 
@@ -65,9 +65,12 @@ const getData = (db) => {
                 });
         },
         create(offer) {
-            return collection.insert(offer)
-                .then((result) => {
-                    return offer;
+            return validator.validateCreateNewOfferForm(offer)
+                .then(() => {
+                    return collection.insert(offer)
+                        .then((result) => {
+                        return offer;
+                    });
                 });
         },
         getOffersByFilter(filter) {

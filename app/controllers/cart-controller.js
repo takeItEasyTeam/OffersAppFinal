@@ -1,4 +1,4 @@
-module.exports = function(data, validator) {
+module.exports = function(data) {
     return {
         addOfferToCart(req, res) {
             return data.offers.getById(req.params.id)
