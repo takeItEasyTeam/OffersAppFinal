@@ -8,6 +8,9 @@ const getData = (db, validator) => {
         return 42;
     }
     return {
+        getOfferCount(id) {
+            return 42;
+        },
         getAll() {
             return collection.find({})
                 .toArray()
