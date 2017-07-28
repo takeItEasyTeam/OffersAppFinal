@@ -38,16 +38,16 @@ block content
                         .col-xs-4
                                 .input-group.minusPlus
                                     span.input-group-btn
-                                        a.btn.btn-danger(href='/reduce/' + product.item.id)
-                                            span.glyphicon.glyphicon-minus
+                                        a.btn.btn-danger.reduce(data-id=product.item.id)
+                                            span.glyphicon.glyphicon-minus(data-id=product.item.id)
                                     input.form-control.input-number(type='text', value=product.qty, min='1', max='100')
                                     span.input-group-btn
-                                        a.btn.btn-success(href='/plus/' + product.item.id)
-                                            span.glyphicon.glyphicon-plus
+                                        a.btn.btn-success.plus(data-id=product.item.id)
+                                            span.glyphicon.glyphicon-plus(data-id=product.item.id)
                         .col-xs-2
-                                a.button.btn.btn-labeled.btn-danger(href='/remove/' + product.item.id, type='button')
+                                a.button.btn.btn-labeled.btn-danger.remove(data-id=product.item.id)
                                     span.btn-label
-                                        i.glyphicon.glyphicon-trash
+                                        i.glyphicon.glyphicon-trash(data-id=product.item.id)
                                     | 
                                     |Изтрий
                     hr
