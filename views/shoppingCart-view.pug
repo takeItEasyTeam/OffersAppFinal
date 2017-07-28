@@ -56,7 +56,7 @@ block content
                       .col-xs-9
                         h6.text-right 
                       .col-xs-3
-                        a.button.btn.btn-danger.btn-sm.btn-block(href='/deleteCart',type='button')
+                        a.button.btn.btn-danger.btn-sm.btn-block(href='/shoppingCart/deleteCart',type='button')
                           | Изтрий картата!
                 .panel-footer
                   .row.text-center
@@ -66,7 +66,7 @@ block content
                         strong=totalPrice
                         | лв. 
                     .col-xs-3
-                      a.button.btn.btn-success.btn-block(href='/checkout', type='button')
+                      a.button.btn.btn-success.btn-block(href='/shoppingCart/checkout', type='button')
                         | Потвърди и плати
 
     else

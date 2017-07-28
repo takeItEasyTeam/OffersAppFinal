@@ -8,7 +8,15 @@ module.exports = function(app, data) {
     const router = new Router();
 
     router
-        .get('/addToCart/:id', function(req, res) {
+        .get('/', function(req, res) {
+            if (!req.session.cart) {
+                return res.render('shoppingCart-view');
+            }
+
+            const cart = new Cart(req.session.cart);
+            return res.render('shoppingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice });
+        })
+        .get('/add/:id', function(req, res) {
             const cart = new Cart(req.session.cart ? req.session.cart : {});
                 return controller.addOfferToCart(req, res)
                     .then((result) => {
@@ -17,14 +25,6 @@ module.exports = function(app, data) {
                         const BuyOfferCounter = req.session.cart.totalQty;
                         res.send(JSON.stringify(BuyOfferCounter));
                     });
-        })
-        .get('/shoppingCart', function(req, res) {
-            if (!req.session.cart) {
-                return res.render('shoppingCart-view');
-            }
-
-            const cart = new Cart(req.session.cart);
-            return res.render('shoppingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice });
         })
         .get('/reduce/:id', function(req, res, next) {
             const productId = req.params.id;
@@ -62,5 +62,5 @@ module.exports = function(app, data) {
             return controller.createOrder(req, res, cart);
         });
 
-    app.use('/', router);
+    app.use('/shoppingCart', router);
 };

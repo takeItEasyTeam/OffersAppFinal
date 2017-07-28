@@ -20,7 +20,7 @@ $(document).ready(function() {
         const id = $target.attr('data-id');
         $.ajax({
             type: 'GET',
-            url: '/addToCart/' + id,
+            url: '/shoppingCart/add/' + id,
             success: function(response) {
                 $('.badge').html(response);
             },
@@ -34,7 +34,7 @@ $(document).ready(function() {
         const id = $target.attr('data-id');
         $.ajax({
             type: 'GET',
-            url: '/plus/' + id,
+            url: '/shoppingCart/plus/' + id,
             success: function(response) {
                 window.location.href = '/shoppingCart';
             },
@@ -48,7 +48,7 @@ $(document).ready(function() {
         const id = $target.attr('data-id');
         $.ajax({
             type: 'GET',
-            url: '/remove/' + id,
+            url: '/shoppingCart/remove/' + id,
             success: function(response) {
                 window.location.href = '/shoppingCart';
             },
@@ -62,7 +62,7 @@ $(document).ready(function() {
         const id = $target.attr('data-id');
         $.ajax({
             type: 'GET',
-            url: '/reduce/' + id,
+            url: '/shoppingCart/reduce/' + id,
             success: function(response) {
                 window.location.href = '/shoppingCart';
             },
