@@ -1,0 +1,71 @@
+block content
+    if products 
+            .row
+              .col-xs-12
+                .panel.panel-info
+                  .panel-heading
+                    .panel-title
+                      .row
+                        .col-xs-6
+                          h5
+                            span.glyphicon.glyphicon-shopping-cart
+                            |  Пазарска количка
+                        .col-xs-6
+                          a.button.btn.btn-primary.btn-sm.btn-block(href='/',type='button')
+                            span.glyphicon.glyphicon-share-alt
+                            |  Продължи да пазаруваш
+                .panel-body
+                  for product in products
+                    .row
+                      .col-xs-2
+                        if product.item.files[0]
+                          img.img-responsive(src=product.item.files[0].path)
+                        else
+                          img.img-responsive(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
+                      .col-xs-4
+                        h4.product-name
+                            strong=product.item.destination
+                        h4
+                            small=product.item.city
+                      .col-xs-6
+                        .col-xs-6.text-right
+                            h6
+                              strong
+                                =product.price 
+                                span.text-muted лв.
+                        .col-xs-4
+                                .input-group.minusPlus
+                                    span.input-group-btn
+                                        a.btn.btn-danger.reduce(data-id=product.item.id)
+                                            span.glyphicon.glyphicon-minus(data-id=product.item.id)
+                                    input.form-control.input-number(type='text', value=product.qty, min='1', max='100')
+                                    span.input-group-btn
+                                        a.btn.btn-success.plus(data-id=product.item.id)
+                                            span.glyphicon.glyphicon-plus(data-id=product.item.id)
+                        .col-xs-2
+                                a.button.btn.btn-labeled.btn-danger.remove(data-id=product.item.id)
+                                    span.btn-label
+                                        i.glyphicon.glyphicon-trash(data-id=product.item.id)
+                                    | 
+                                    |Изтрий
+                    hr
+                  .row
+                    .text-center
+                      .col-xs-9
+                        h6.text-right 
+                      .col-xs-3
+                        a.button.btn.btn-danger.btn-sm.btn-block(href='/shoppingCart/deleteCart',type='button')
+                          | Изтрий картата!
+                .panel-footer
+                  .row.text-center
+                    .col-xs-9
+                      h4.text-right
+                        | Тотал:  
+                        strong=totalPrice
+                        | лв. 
+                    .col-xs-3
+                      a.button.btn.btn-success.btn-block(href='/shoppingCart/checkout', type='button')
+                        | Потвърди и плати
+
+    else
+        H1.text-center Количката е празна

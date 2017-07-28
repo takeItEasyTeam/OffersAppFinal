@@ -29,42 +29,42 @@ $(document).ready(function() {
             },
         });
     });
-    $('.plus').on('click', function(e) {
+    $(document).on('click', '.plus', function(e) {
         $target = $(e.target);
         const id = $target.attr('data-id');
         $.ajax({
             type: 'GET',
             url: '/shoppingCart/plus/' + id,
             success: function(response) {
-                window.location.href = '/shoppingCart';
+                $('.main').html(response);
             },
             error: function(err) {
                 console.log(err);
             },
         });
     });
-    $('.remove').on('click', function(e) {
+    $(document).on('click', '.remove', function(e) {
         $target = $(e.target);
         const id = $target.attr('data-id');
         $.ajax({
             type: 'GET',
             url: '/shoppingCart/remove/' + id,
             success: function(response) {
-                window.location.href = '/shoppingCart';
+                $('.main').html(response);
             },
             error: function(err) {
                 console.log(err);
             },
         });
     });
-    $('.reduce').on('click', function(e) {
+    $(document).on('click','.reduce', function(e) {
         $target = $(e.target);
         const id = $target.attr('data-id');
         $.ajax({
             type: 'GET',
             url: '/shoppingCart/reduce/' + id,
             success: function(response) {
-                window.location.href = '/shoppingCart';
+                $('.main').html(response);
             },
             error: function(err) {
                 console.log(err);

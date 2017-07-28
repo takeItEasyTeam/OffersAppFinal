@@ -72,7 +72,7 @@ html(lang='en')
                 a(href='/chat') Чат
               li.hvr-float-shadow
                 a(href='/logout') Излез
-    .container
+    .container.main
       != messages('message', locals)
       if errors
         each error, i in errors

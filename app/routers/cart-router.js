@@ -32,7 +32,7 @@ module.exports = function(app, data) {
 
             cart.reduceByOne(productId);
             req.session.cart = cart;
-            res.status(200).json({ message: 'OK' });
+            return res.render('partialShopingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice });
         })
         .get('/plus/:id', function(req, res, next) {
             const productId = req.params.id;
@@ -40,7 +40,7 @@ module.exports = function(app, data) {
 
             cart.plusByOne(productId);
             req.session.cart = cart;
-            res.status(200).json({ message: 'OK' });
+            return res.render('partialShopingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice });
         })
         .get('/remove/:id', function(req, res, next) {
             const productId = req.params.id;
@@ -48,7 +48,7 @@ module.exports = function(app, data) {
 
             cart.removeItem(productId);
             req.session.cart = cart;
-            res.status(200).json({ message: 'OK' });
+            return res.render('partialShopingCart-view', { products: cart.generateArray(), totalPrice: cart.totalPrice });
         })
         .get('/checkout', isLogin, function(req, res) {
             res.render('checkout-view');
