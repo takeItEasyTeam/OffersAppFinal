@@ -90,9 +90,12 @@ const getData = (db, validator) => {
                     });
                 });
         },
-        sortOffers(order, offerType) {
-            return collection.find({ destination: offerType })
-                .sort({ price: order })
+        sortOffers(sorting, order, offerType) {
+            console.log(sorting);
+            const filter = {};
+            filter[sorting] = order;
+            return collection.find({ destination: 'Море' })
+                .sort(filter)
                 .toArray()
                 .then((offers) => {
                     return offers.map((offer) => {

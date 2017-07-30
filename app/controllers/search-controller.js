@@ -33,7 +33,8 @@ module.exports = function(data) {
                 });
         },
         sortOffers(req, res) {
-            console.log(req.query.priceHight);
+            const sort = req.query.sorting === 'price' ? 'price' : '_id';
+            const order = req.query.order === 'ASC' ? 1 : -1;
             let offerType;
 
             switch (req.body.path) {
@@ -52,11 +53,11 @@ module.exports = function(data) {
                 default: offerType = 'None';
                     break;
             }
-            console.log(offerType);
-            const order = Number(req.body.order);
-            return data.offers.sortOffers(order, offerType)
+            return data.offers.sortOffers(sort, order, offerType)
                 .then((offers) => {
-                    return res.send({ context: offers });
+                     return res.render('allOffers-view', {
+                        context: offers,
+                    });
                 });
         },
     };

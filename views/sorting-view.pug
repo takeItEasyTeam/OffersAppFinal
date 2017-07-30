@@ -1,11 +1,14 @@
-
-section#viewSearch.container.text-center(method="get")
-        button#sortByDate-New.btn.btn-default.hvr-icon-up(type='submit', name='dateNew')
-          | Дата
-        button#sortByDate-Old.btn.btn-default.hvr-icon-down(type='submit', name='dateOld')
-          | Дата
-        button#sortByPrice-High.btn.btn-default.hvr-icon-up(type='submit', name='priceHight')
-          | Цена  
-        button#sortByPrice-Low.btn.btn-default.hvr-icon-down(type='submit', name='priceLow')
-          | Цена
+.row
+  form.form-inline.text-right(id="sort" action='/sort' method='GET')
+    .form-group
+      label(for='sel1') Сортирай по:
+      | 
+      select#sel1.form-control(name='sorting')
+        option(value='price') Цена
+        option(value='date') Дата
+    .form-group
+      select#sel2.form-control(name='order')
+        option(value='ASC') Низходящо
+        option(value='DESC') Възходящо
+    button.btn.btn-default(type='submit' value='Filter') Филтрирай
 br
