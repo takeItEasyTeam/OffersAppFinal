@@ -16,23 +16,23 @@ function frontRegisterUserValidation(req, res, next) {
   const town = req.body.town;
 
 
-  req.checkBody('firstName', 'First name is required').notEmpty();
-  req.checkBody('firstName', 'First name must contain between 3 and 15 characters').len(3, 15);
-  req.checkBody('lastName', 'Last name is required').notEmpty();
-  req.checkBody('lastName', 'Last name must contain between 3 and 15 characters').len(3, 15);
-  req.checkBody('username', 'Username is required').notEmpty();
-  req.checkBody('username', 'Username must contain between 3 and 15 characters').len(3, 15);
-  req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password', 'Password must contain between 3 and 15 characters').len(3, 15);
-  req.checkBody('repeatPassword', 'Passwords do not match').equals(req.body.password);
-  req.checkBody('email', 'Email is required').notEmpty();
-  req.checkBody('email', 'Email is not valid').isEmail();
-  req.checkBody('phoneNumber', 'Phone number is required').notEmpty();
-  req.checkBody('phoneNumber', 'Phone number must contain digits only').isInt();
-  req.checkBody('country', 'Country is required').notEmpty();
-  req.checkBody('country', 'Country must contain between 1 and 30 characters').len(1, 30);
-  req.checkBody('town', 'Town is required').notEmpty();
-  req.checkBody('town', 'Town must contain between 1 and 30 characters').len(1, 30);
+  req.checkBody('firstName', 'Полето Име: е задължително!').notEmpty();
+  req.checkBody('firstName', 'Полето Име: трябва да бъде между 3 и 15 символа!').len(3, 15);
+  req.checkBody('lastName', 'Полето Фамилия: е задължително!').notEmpty();
+  req.checkBody('lastName', 'Полето Фамилия: трябва да бъде между 3 и 15 символа!').len(3, 15);
+  req.checkBody('username', 'Полето Потребителско име: е задължително!').notEmpty();
+  req.checkBody('username', 'Полето Потребителско име: трябва да бъде между 3 и 15 символа!').len(3, 15);
+  req.checkBody('password', 'Полето Парола: е задължително!').notEmpty();
+  req.checkBody('password', 'Полето Парола: трябва да бъде между 3 и 15 символа!').len(3, 15);
+  req.checkBody('repeatPassword', 'Паролата трябва да съвпада!').equals(req.body.password);
+  req.checkBody('email', 'Полето E-mail: е задължително!').notEmpty();
+  req.checkBody('email', 'Е-mail форматът е невалиден!').isEmail();
+  req.checkBody('phoneNumber', 'Полето Телефонен номер: е задължително!').notEmpty();
+  req.checkBody('phoneNumber', 'Полето Телефонен номер трябва да съдържа само цифри!').isInt();
+  req.checkBody('country', 'Полето Държава: е задължително!').notEmpty();
+  req.checkBody('country', 'Полето Държава: трябва да съдържа между 1 и 30 символа!').len(1, 30);
+  req.checkBody('town', 'Полето Град: е задължително!').notEmpty();
+  req.checkBody('town', 'Полето Град: трябва да съдържа между 1 и 30 символа!').len(1, 30);
 
   const errors = req.validationErrors();
 
