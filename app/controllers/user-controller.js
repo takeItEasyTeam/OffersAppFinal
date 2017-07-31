@@ -50,7 +50,7 @@ module.exports = function(data) {
         updateUserImage(req, res, upload) {
             upload(req, res, (err) => {
                 if (err) {
-                    req.flash('error', 'Upload failed!');
+                    req.flash('error', 'Грешка при качването на снимката');
                     res.redirect('/profile');
                 }
                 const userId = req.session.passport.user;

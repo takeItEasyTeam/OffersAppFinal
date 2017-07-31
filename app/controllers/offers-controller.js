@@ -77,7 +77,7 @@ module.exports = function(data) {
         edit(req, res, upload) {
             upload(req, res, (err) => {
                 if (err) {
-                    req.flash('error', 'You can upload only 3 pictures!');
+                    req.flash('error', 'Може да качите само до 3 снимки!');
                     res.redirect('/createOffer');
                 }
                 const updates = {};
@@ -158,7 +158,7 @@ module.exports = function(data) {
                         res.redirect('/');
                     })
                     .catch((error) => {
-                        req.flash('error', 'Please enter comment');
+                        req.flash('error', 'Моля въведете коментар');
                     });
             });
         },
