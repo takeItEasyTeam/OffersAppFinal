@@ -1,14 +1,9 @@
 /* globals process */
 
-const connectionStrings = {
-    production: process.env.CONNECTION_STRING, // set node env variable - amazon
-    development: 'mongodb://localhost/OffersDB',
-};
+const port = 3001;
+const connectionString = 'mongodb://localhost/OffersDB';
+    // 'mongodb://localhost/OffersDB', // local usage
+    // 'mongodb://mongo:27017/', // Docker usage
+    // 'mongodb://35.158.233.58:27017/', // AWS usage
 
-const environment = process.env.NODE_ENV || 'development';
-
-module.exports = {
-    environment: environment,
-    connectionString: connectionStrings[environment],
-    port: process.env.PORT || 3001,
-};
+module.exports = { connectionString, port };

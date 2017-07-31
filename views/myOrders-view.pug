@@ -25,7 +25,7 @@ block content
                     - ordersCount += item.cart.totalQty;
                     tr
                         td= item.id
-                        td(class="text-center") #{moment(orderDate).format('MM/DD/YYYY HH:mm')}
+                        td(class="text-center") #{moment(orderDate).format('MM/DD/YYYY')}
                         td(class="text-center")= item.cart.totalQty
                         td(class="text-center")= item.cart.totalPrice 
                             span.text  лв.
