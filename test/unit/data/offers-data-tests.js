@@ -67,7 +67,7 @@ describe('Offers data getById()', () => {
         return Promise.resolve(item || null);
     };
 
-    describe('When there is not an offers with this td', () => {
+    describe('When there is not an offers with this id', () => {
         beforeEach(() => {
            sinon.stub(db, 'collection').callsFake(() => {
                 return { findOne };
@@ -89,7 +89,7 @@ describe('Offers data getById()', () => {
                 });
         });
     });
-    describe('When there is an offer with this td', () => {
+    describe('When there is an offer with this id', () => {
         const { ObjectID } = require('mongodb');
         const firstId = new ObjectID().toHexString();
         const secondId = new ObjectID().toHexString();
@@ -191,7 +191,7 @@ describe('Offers data getMyOffers()', () => {
         };
     };
 
-    describe('When there are offers create by different users', () => {
+    describe('When there are offers created by different users', () => {
         beforeEach(() => {
            sinon.stub(db, 'collection').callsFake(() => {
                 return { find };

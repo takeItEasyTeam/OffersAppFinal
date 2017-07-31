@@ -13,13 +13,11 @@ gulp.task('pre-test', () => {
     return gulp.src([
         './app/app.js',
         './server.js',
-        './app/auth/**/*.js',
         './app/config/**/*.js',
         './app/controllers/**/*.js',
         './app/data/*.js',
         './app/db/**/*.js',
         './app/model/**/*.js',
-        '.app/routers/**/*.js',
         '.app/utils/**/*.js',
     ])
         .pipe(istanbul({

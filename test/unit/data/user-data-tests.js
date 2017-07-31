@@ -180,3 +180,100 @@ describe('Users data uploadImage()', () => {
     });
 });
 
+describe('User data getMyOrders()', () => {
+    const db = {
+        collection: () => { },
+    };
+    // change orders
+    const orders = [{ '_id': '1', 'destination': 'Море', 'author': '456' },
+    { '_id': '2', 'destination': 'Планина', 'author': '123' },
+    { '_id': '3', 'destination': 'Море', 'author': '456' }];
+
+    let data = null;
+
+    const validator = {};
+
+    const find = (props) => {
+        const items = orders.filter((i) => i.author === props.userId);
+        return {
+            toArray: () => {
+                return Promise.resolve(items);
+            },
+        };
+    };
+
+    describe('When there are orders', () => {
+        beforeEach(() => {
+           sinon.stub(db, 'collection').callsFake(() => {
+                return { find };
+            });
+            data = getData(db, validator);
+        });
+
+        afterEach(() => {
+            db.collection.restore();
+        });
+
+        it('expect getMyOrders function to return the correct result ',
+        (done) => {
+            const userId = '123';
+            data.getMyOrders(userId)
+                .then((res) => {
+                    const value = orders.filter((i) => i.author === userId)
+                    .map((order) => {
+                        order.id = order._id;
+                        return order;
+                    });
+                    expect(res).to.deep.equal(value);
+                    done();
+                });
+        });
+    });
+});
+
+describe('Users data findBy()', () => {
+    const db = {
+        collection: () => { },
+    };
+    let users = [];
+
+    let data = null;
+    const validator = {};
+
+    const findOne = (props) => {
+        const id = props.toString();
+        const item = users.find((i) => i.id === id);
+        return Promise.resolve(item || null);
+    };
+
+    describe('When there is an user with this id', () => {
+        const { ObjectID } = require('mongodb');
+        const firstId = new ObjectID().toHexString();
+        const secondId = new ObjectID().toHexString();
+        const firstUser = { 'id': firstId, 'username': 'Pesho' };
+        const secondUser = { 'id': secondId, 'username': 'Gosho' };
+
+        beforeEach(() => {
+            users = [firstUser, secondUser];
+            sinon.stub(db, 'collection').callsFake(() => {
+                return { findOne };
+            });
+
+            data = getData(db, validator);
+        });
+
+        afterEach(() => {
+            db.collection.restore();
+            users = [];
+        });
+
+        it('expect findBy function to return correct offer', (done) => {
+            data.findBy(firstId)
+                .then((user) => {
+                    expect(user).to.deep.equal(firstUser);
+                    done();
+                });
+        });
+    });
+});
+
