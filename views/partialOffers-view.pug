@@ -1,0 +1,45 @@
+block content
+  include sorting-view
+  .row.proba
+    for item in context
+      .col-md-3.col-sm-6.hero-feature.hvr-bob
+        .thumbnail
+            if item.files
+                if item.files[0]
+                    img(src='/' + item.files[0].path, alt='')
+                else
+                    img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
+            else
+                img(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png')
+            .caption
+                - let dateValid = new Date(item.validity);
+                h3= item.destination
+                p Град:
+                    =item.city
+                p Цена:
+                    =item.price
+                p Срок на офертата: #{moment(dateValid).format('DD/MM/YYYY HH:mm')}
+                p
+                  if moment(dateValid).isBefore(moment())
+                    a.btn.btn-default.disabled(href='#/',type='button', data-id=item._id) Изтекла оферта
+                  else
+                    a.btn.btn-success.buy(href='#/',type='button', data-id=item._id) Купи
+                  a.btn.btn-primary(href="/" + item.id) Информация
+                .ratings
+                    - let ratesSum = 0;
+                    - for (let i = 0; i < item.comments.length; i++)
+                        - ratesSum += item.comments[i].rate;
+                    - let avegareRate = ratesSum/item.comments.length || 0; 
+                    - let rateCount = item.comments.length;
+                    p.pull-right 
+                        case rateCount
+                            when 1
+                                span #{rateCount} коментар
+                            default
+                                span #{rateCount} коментара
+                    p.star
+                        - for (let j = 0; j < 5; j++)
+                            if avegareRate >= (j+1)
+                                span.glyphicon.glyphicon-star
+                            else
+                                span.glyphicon.glyphicon-star-empty

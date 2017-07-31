@@ -1,62 +1,6 @@
 /* globals $ */
 
 $(document).ready(function() {
-    $('#sortByPrice-High').on('click', function(e) {
-        const currentPath = {
-            path: window.location.pathname,
-            order: -1,
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/sort',
-            data: currentPath,
-            success: function(response) {
-                getTemplateAjax(response);
-            },
-            error: function(err) {
-                console.log(err);
-            },
-        });
-    });
-    $('#sortByPrice-Low').on('click', function(e) {
-        const currentPath = {
-            path: window.location.pathname,
-            order: 1,
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/sort',
-            data: currentPath,
-            success: function(response) {
-                getTemplateAjax(response);
-            },
-            error: function(err) {
-                console.log(err);
-            },
-        });
-    });
-
-
-    function getTemplateAjax(dataFromApi) {
-        let source;
-        let template;
-        let test;
-
-        $.ajax({
-            url: `/static/templates/testovo.handlebars`,
-            cache: true,
-            success: function(data) {
-                source = data;
-                template = Handlebars.compile(source);
-                test = template(dataFromApi);
-                $('.proba').html(test);
-                setTimeout(function() {
-                    $('.loader').hide();
-                }, 0);
-            },
-        });
-    }
-
     // back to the top
     window.onscroll = function() {
         scrollFunction();

@@ -33,29 +33,30 @@ module.exports = function(data) {
                 });
         },
         sortOffers(req, res) {
-            const sort = req.query.sorting === 'price' ? 'price' : '_id';
-            const order = req.query.order === 'ASC' ? 1 : -1;
-            let offerType;
 
+            const sort = req.body.sorting === 'price' ? 'price' : '_id';
+            const order = req.body.order === 'ASC' ? 1 : -1;
+            let offerType;
             switch (req.body.path) {
                 case '/sea':
-                    offerType = 'Море';
+                    offerType = { destination: 'Море'};
                     break;
                 case '/mountain':
-                    offerType = 'Планина';
+                    offerType = { destination: 'Планина'};
                     break;
                 case '/spa':
-                    offerType = 'СПА';
+                    offerType = { destination: 'СПА'};
                     break;
                 case '/excursion':
-                    offerType = 'Екскурзия';
+                    offerType = { destination: 'Екскурзия'};
                     break;
-                default: offerType = 'None';
+                default: offerType = {};
                     break;
             }
+            
             return data.offers.sortOffers(sort, order, offerType)
                 .then((offers) => {
-                     return res.render('allOffers-view', {
+                     return res.render('partialOffers-view', {
                         context: offers,
                     });
                 });

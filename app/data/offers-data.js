@@ -91,10 +91,10 @@ const getData = (db, validator) => {
                 });
         },
         sortOffers(sorting, order, offerType) {
-            console.log(sorting);
+            console.log(offerType);
             const filter = {};
             filter[sorting] = order;
-            return collection.find({ destination: 'Море' })
+            return collection.find(offerType)
                 .sort(filter)
                 .toArray()
                 .then((offers) => {

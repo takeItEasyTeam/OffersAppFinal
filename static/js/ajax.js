@@ -71,4 +71,25 @@ $(document).ready(function() {
             },
         });
     });
+    $(document).on('click','#filter', function(e) {
+        const sorting = $('.sorting').val();
+        const order = $('.order').val();
+        
+        const data = {
+            sorting,
+            order,
+            path: window.location.pathname,
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/sort',
+            data: data,
+            success: function(response) {
+                $('.main').html(response);
+            },
+            error: function(err) {
+                console.log(err);
+            },
+        });
+    });
 });
