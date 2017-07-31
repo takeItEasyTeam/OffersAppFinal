@@ -1,6 +1,6 @@
 block content
   include sorting-view
-  .row.proba.animated.bounceInUp
+  .row.proba.animated.bounceInLeft
     for item in context
       .col-md-3.col-sm-6.hero-feature.hvr-bob
         .thumbnail
@@ -23,8 +23,8 @@ block content
                   if moment(dateValid).isBefore(moment())
                     a.btn.btn-default.disabled(href='#/',type='button', data-id=item._id) Изтекла оферта
                   else
+                    a.btn.btn-primary(href="/" + item.id) Информация
                     a.btn.btn-success.buy(href='#/',type='button', data-id=item._id) Купи
-                  a.btn.btn-primary(href="/" + item.id) Информация
                 .ratings
                     - let ratesSum = 0;
                     - for (let i = 0; i < item.comments.length; i++)

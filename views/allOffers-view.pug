@@ -25,8 +25,8 @@ block content
                   if moment(dateValid).isBefore(moment())
                     a.btn.btn-default.disabled(href='#/',type='button', data-id=item._id) Изтекла оферта
                   else
+                    a.btn.btn-primary(href="/" + item.id) Информация
                     a.btn.btn-success.buy(href='#/',type='button', data-id=item._id) Купи
-                  a.btn.btn-primary(href="/" + item.id) Информация
                 .ratings
                     - let ratesSum = 0;
                     - for (let i = 0; i < item.comments.length; i++)
