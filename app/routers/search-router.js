@@ -12,9 +12,7 @@ module.exports = function(app, data) {
         .get('/spa/search', controller.findOffers)
         .get('/excursion/search', controller.findOffers)
         .get('/profile/myOffers/search', controller.findOffers)
-        .post('/sort', function(req, res) {
-            return controller.sortOffers(req, res);
-        });
+        .post('/sort', controller.sortOffers);
 
     app.use('/', router);
 };

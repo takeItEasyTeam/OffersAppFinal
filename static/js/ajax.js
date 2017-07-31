@@ -15,7 +15,7 @@ $(document).ready(function() {
             },
         });
     });
-    $('.buy').on('click', function(e) {
+    $(document).on('click', '.buy', function(e) {
         $target = $(e.target);
         const id = $target.attr('data-id');
         $.ajax({
