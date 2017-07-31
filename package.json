@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": " npm run unit_tests && gulp tests:browser",
+    "test": " gulp tests:unit && gulp tests:browser",
     "lint": "./node_modules/.bin/eslint .",
-    "unit_tests": "./node_modules/.bin/mocha test/unit/**/*.js",
+    "unit_tests": "./node_modules/.bin/mocha test/unit/**/*.js --timeout 10000",
     "browser_tests": "gulp tests:browser",
-    "istanbul_unit_tests": "istanbul cover ./node_modules/mocha/bin/_mocha test/unit/**/*.js",
+    "istanbul_unit_tests": "istanbul cover ./node_modules/mocha/bin/_mocha test/unit/**/*.js --timeout 10000",
     "istanbul_browser_tests": "istanbul cover ./node_modules/mocha/bin/_mocha test/browser/**/*.js --timeout 10000"
   },
   "author": "",

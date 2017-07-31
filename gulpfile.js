@@ -13,6 +13,14 @@ gulp.task('pre-test', () => {
     return gulp.src([
         './app/app.js',
         './server.js',
+        './app/auth/**/*.js',
+        './app/config/**/*.js',
+        './app/controllers/**/*.js',
+        './app/data/*.js',
+        './app/db/**/*.js',
+        './app/model/**/*.js',
+        '.app/routers/**/*.js',
+        '.app/utils/**/*.js',
     ])
         .pipe(istanbul({
             includeUntested: true,
@@ -28,7 +36,7 @@ gulp.task('tests:unit', ['pre-test'], () => {
             reporter: 'nyan',
             timeout: 10000,
         }))
-        .pipe(istanbul.writeReports());
+        .pipe(istanbul.writeReports({ dir: './coverage/unit' }));
 });
 
 const config = {
@@ -64,7 +72,7 @@ gulp.task('tests:browser', ['test-server:start'], () => {
             reporter: 'nyan',
             timeout: 100000,
         }))
-        .pipe(istanbul.writeReports())
+        .pipe(istanbul.writeReports({ dir: './coverage/browser' }))
         .once('end', () => {
             gulp.start('test-server:stop');
         });
