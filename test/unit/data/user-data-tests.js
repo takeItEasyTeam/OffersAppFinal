@@ -184,10 +184,9 @@ describe('User data getMyOrders()', () => {
     const db = {
         collection: () => { },
     };
-    // change orders
-    const orders = [{ '_id': '1', 'destination': 'Море', 'author': '456' },
-    { '_id': '2', 'destination': 'Планина', 'author': '123' },
-    { '_id': '3', 'destination': 'Море', 'author': '456' }];
+    const orders = [{ '_id': '1', 'cart': [], 'author': '456' },
+    { '_id': '2', 'cart': [], 'author': '123' },
+    { '_id': '3', 'cart': [], 'author': '456' }];
 
     let data = null;
 

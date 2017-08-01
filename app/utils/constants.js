@@ -17,4 +17,6 @@ module.exports = {
     invalidDescription: 'Полето Описание трябва да съдържа между 5 и 150 символа',
     invalidNumberOfPictures: 'Може да качите само до 3 снимки',
     invalidUserImageLength: 'Трябва да изберете 1 снимка',
+    invalidMessageLength: 'Полето Коментар трябва да съдържа между 5 и 150 символа',
+    invalidRate: 'Стойността на полето Рейтинг трявбва да е между 1 и 5',
 };

@@ -132,4 +132,26 @@ describe('Offers controller getOfferType function', () => {
                 });
         });
     });
+    describe('when req.path is /', () => {
+        beforeEach(() => {
+            req.path = '/';
+        });
+
+        afterEach(() => {
+            req.path = {};
+            data.offers.getByOfferType.restore();
+        });
+
+        it('expect to return the correct data',
+            (done) => {
+            Promise.resolve(controller.getByOfferType(req, res))
+                .then(() => {
+                    expect(res.model).to.be.deep.equal({
+                        context: offers,
+                    });
+                    expect(res.viewName).to.be.equal('allOffers-view');
+                    done();
+                });
+        });
+    });
 });

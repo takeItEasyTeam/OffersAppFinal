@@ -158,7 +158,8 @@ module.exports = function(data) {
                         res.redirect('/');
                     })
                     .catch((error) => {
-                        req.flash('error', 'Моля въведете коментар');
+                        req.flash('error', error);
+                        res.redirect('/' + query);
                     });
             });
         },

@@ -7,19 +7,9 @@ const init = require('../../../../app/controllers/user-controller');
 const sinon = require('sinon');
 
 describe('Users controller getMyOrders function', () => {
-
     let controller = null;
-    // change orders objects
     const currentUserId = '123';
-    const orders = [{ 'destination': 'Море', 'city': 'Варна',
-        'validity': '07/25/2017 11:59 PM', 'price': '12',
-        'description': 'Offer1', 'files': [], 'author': '123', 'comments': [],
-         },
-        { 'destination': 'Планина', 'city': 'София',
-        'validity': '07/25/2017 11:59 PM', 'price': '12',
-        'description': 'Offer2', 'files': [], 'author': '456',
-        'comments': [],
-        }];
+    const orders = [{ '_id': '123', cart: [] }, { '_id': '321', cart: [] }];
 
     const data = {
             users: {

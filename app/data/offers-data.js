@@ -3,12 +3,13 @@ const { ObjectID } = require('mongodb');
 const getData = (db, validator) => {
     const collection = db.collection('offers');
     const orders = db.collection('orders');
-
+    /*
     function getOfferCount(id) {
         orders.aggregate([{ $unwind: '$items' }]);
         // TO DO!!!
         return 42;
     }
+    */
     return {
         getAll() {
             return collection.find({})
@@ -51,7 +52,7 @@ const getData = (db, validator) => {
                 .then((offers) => {
                     return offers.map((offer) => {
                         offer.id = offer._id;
-                        offer.count = getOfferCount(offer._id);
+                        // offer.count = getOfferCount(offer._id);
                         return offer;
                     });
                 });
@@ -104,8 +105,11 @@ const getData = (db, validator) => {
                 });
         },
         rate(comment, query) {
-            return collection.updateOne({ _id: new ObjectID(query) },
-                { $push: { 'comments': comment } });
+            return validator.validateComment(comment)
+                .then(() => {
+                    return collection.updateOne({ _id: new ObjectID(query) },
+                    { $push: { 'comments': comment } });
+                });
         },
     };
 };

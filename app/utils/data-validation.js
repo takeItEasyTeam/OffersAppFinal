@@ -65,16 +65,23 @@ function validateCreateNewOfferForm(offer) {
     });
 }
 
-function validateEditOfferForm(offer) {
-
-}
-
 function validateComment(comment) {
-
+    return new Promise((resolve, reject) => {
+        const text = comment.text;
+        const rate = comment.rate;
+        try {
+            validateValueLength(5, 150, text, constants.invalidMessageLength);
+            validateWithRegex(rate, digitsRegex, constants.invalidRate);
+            validateValueLength(1, 5, rate, constants.invalidRate);
+            resolve('Success');
+        } catch (error) {
+            reject(error);
+        }
+    });
 }
 
 module.exports = { validateRegistrationFormFields,
-    validateUserImage, validateCreateNewOfferForm };
+    validateUserImage, validateCreateNewOfferForm, validateComment };
 
 function validateValueLength(min, max, value, errorMessage) {
     if (min > value.length || value.length > max) {
@@ -101,3 +108,4 @@ function validateOfferType(value, errorMessage) {
         throw errorMessage;
     }
 }
+

@@ -30,7 +30,7 @@ describe('data-validation validateUserImage function',
         });
     });
 
-    describe('when user with the same username exist', () => {
+    describe('when images are more then one ', () => {
         beforeEach(() => {
             image = [{ 'fieldname': 'image' }, { 'fieldname': 'image' }];
         });

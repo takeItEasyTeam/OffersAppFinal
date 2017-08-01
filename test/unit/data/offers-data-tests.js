@@ -271,3 +271,167 @@ describe('Offers data create()', () => {
         });
     });
 });
+
+describe('Offers data edit()', () => {
+    const db = {
+        collection: () => { },
+    };
+
+    let data = null;
+
+    const { ObjectID } = require('mongodb');
+    const id = new ObjectID().toHexString();
+    const offers =[{ '_id': id, 'destination': 'Море', 'city': 'София',
+        'validity': '07/25/2017 11:59 PM', 'price': '12',
+        'description': 'Offer1', 'files': [],
+        'author': '123', 'comments': [] }];
+
+     const updateOne = (props, set) => {
+        const offerId = props._id.toString();
+        const index = offers.findIndex((i) => i._id === offerId);
+        offers[index].files = set.$set.files;
+
+        return Promise.resolve(offers[0]);
+    };
+
+    const validator = {
+        validateUserImage: (props) => { },
+    };
+
+    describe('When offer\'s data is valid', () => {
+        const updates = { 'files': { 'fiendname': 'image' } };
+        beforeEach(() => {
+           sinon.stub(db, 'collection').callsFake(() => {
+                return { updateOne };
+            });
+            sinon.stub(validator, 'validateUserImage').callsFake(() => {
+                return Promise.resolve('Success');
+            });
+            data = getData(db, validator);
+        });
+
+        afterEach(() => {
+            db.collection.restore();
+        });
+
+        it('expect edit function to return the updated offer ',
+        (done) => {
+            data.edit(updates, id)
+                .then((offer) => {
+                    expect(offer).to.deep.include(updates);
+                    done();
+                });
+        });
+    });
+});
+
+describe('Offers data getOffersByFilter()', () => {
+    const db = {
+        collection: () => { },
+    };
+
+    const offers = [{ '_id': '1', 'destination': 'Море', 'city': 'Варна' },
+    { '_id': '2', 'destination': 'Планина', 'city': 'София' },
+    { '_id': '3', 'destination': 'Море', 'city': 'Созопол' }];
+
+    let data = null;
+
+    const validator = {};
+
+    const find = (props) => {
+        const items = offers.filter((i) => i.city === props);
+        return {
+            toArray: () => {
+                return Promise.resolve(items);
+            },
+        };
+    };
+
+    describe('When there are offers in db', () => {
+        beforeEach(() => {
+           sinon.stub(db, 'collection').callsFake(() => {
+                return { find };
+            });
+            data = getData(db, validator);
+        });
+
+        afterEach(() => {
+            db.collection.restore();
+        });
+
+        it('expect getOffersByFilter() function to return the correct result ',
+        (done) => {
+            data.getOffersByFilter( 'София' )
+                .then((res) => {
+                    const value = offers.filter((i) => i.city === 'София')
+                    .map((offer) => {
+                        offer.id = offer._id;
+                        return offer;
+                    });
+                    expect(res).to.deep.equal(value);
+                    done();
+                });
+        });
+    });
+});
+
+describe('Offers data rate()', () => {
+    const db = {
+        collection: () => { },
+    };
+
+    let data = null;
+
+    const { ObjectID } = require('mongodb');
+    const id = new ObjectID().toHexString();
+    const offers =[{ '_id': id, 'destination': 'Море', 'city': 'София',
+        'validity': '07/25/2017 11:59 PM', 'price': '12',
+        'description': 'Offer1', 'files': [],
+        'author': '123', 'comments': [] }];
+
+     const updateOne = (props, query) => {
+        const offerId = props._id.toString();
+        const index = offers.findIndex((i) => i._id.toString() === offerId);
+       offers[index].comments.push(query.$push.comments);
+
+        return Promise.resolve(offers[index]);
+    };
+
+    const validator = {
+        validateComment: (props) => { },
+    };
+
+    describe('When comment\'s data is valid', () => {
+        const comment = {
+            'text': 'comment',
+            'date': '2017-08-01T04:04:14.161Z',
+            'user': '5979b383222a9f26d87a259d',
+            'userName': 'username',
+            'rate': NaN,
+        };
+        beforeEach(() => {
+           sinon.stub(db, 'collection').callsFake(() => {
+                return { updateOne };
+            });
+            sinon.stub(validator, 'validateComment').callsFake(() => {
+                return Promise.resolve('Success');
+            });
+            data = getData(db, validator);
+        });
+
+        afterEach(() => {
+            validator.validateComment.restore();
+            db.collection.restore();
+        });
+
+        it('expect rate function to return the updated offer ',
+        (done) => {
+            data.rate(comment, id)
+                .then((offer) => {
+                    expect(offer.comments).to.deep.include(comment);
+                    done();
+                });
+        });
+    });
+});
+
