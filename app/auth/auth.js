@@ -13,7 +13,7 @@ module.exports = (app, { users }, db, secret, io) => {
                 if (!user) {
                     return done(null,
                         false,
-                        { message: 'Incorrect username.' });
+                        { message: 'Няма такъв потребител!' });
                 }
 
                 /* Hashpassword Match */
