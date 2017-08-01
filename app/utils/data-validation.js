@@ -43,7 +43,6 @@ function validateUserImage(image) {
 }
 
 function validateCreateNewOfferForm(offer) {
-    console.log(offer);
     const destination = offer.destination;
     const city = offer.city;
     const validity = offer.validity;
