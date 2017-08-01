@@ -146,7 +146,7 @@ describe('Offers controller getOfferType function', () => {
             (done) => {
             Promise.resolve(controller.getByOfferType(req, res))
                 .then(() => {
-                    expect(res.model).to.be.deep.equal({
+                     expect(res.model).to.be.deep.equal({
                         context: offers,
                     });
                     expect(res.viewName).to.be.equal('allOffers-view');

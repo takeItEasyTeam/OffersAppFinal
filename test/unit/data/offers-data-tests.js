@@ -118,6 +118,38 @@ describe('Offers data getById()', () => {
                 });
         });
     });
+    describe('When findOne does not resolve', () => {
+        const { ObjectID } = require('mongodb');
+        const firstId = new ObjectID().toHexString();
+        const secondId = new ObjectID().toHexString();
+        const firstOffer = { 'id': firstId, 'description': 'Offer1' };
+        const secondOffer = { 'id': secondId, 'description': 'Offer2' };
+
+        beforeEach(() => {
+            offers = [firstOffer, secondOffer];
+            sinon.stub(db, 'collection').callsFake(() => {
+                const reject = () => {
+                    return Promise.reject(findOne);
+                };
+                return { reject };
+            });
+
+            data = getData(db, validator);
+        });
+
+        afterEach(() => {
+            db.collection.restore();
+            offers = [];
+        });
+
+        it('expect error to have correct message', (done) => {
+            data.getById(firstId)
+                .catch((error) => {
+                    expect(error).to.deep.equal('Invalid id');
+                    done();
+                });
+        });
+    });
 });
 
 describe('Offers data getByOfferType()', () => {
@@ -429,6 +461,57 @@ describe('Offers data rate()', () => {
             data.rate(comment, id)
                 .then((offer) => {
                     expect(offer.comments).to.deep.include(comment);
+                    done();
+                });
+        });
+    });
+});
+
+describe('Offers data delete()', () => {
+    const db = {
+        collection: () => { },
+    };
+
+    let data = null;
+    const validator = {};
+    const { ObjectID } = require('mongodb');
+    const id = new ObjectID().toHexString();
+
+    const offer ={ '_id': id, 'destination': 'Море', 'city': 'София',
+        'validity': '07/25/2017 11:59 PM', 'price': '12',
+        'description': 'Offer1', 'files': [],
+        'author': '123', 'comments': [] };
+
+    const offers =[{ '_id': id, 'destination': 'Море', 'city': 'София',
+        'validity': '07/25/2017 11:59 PM', 'price': '12',
+        'description': 'Offer1', 'files': [],
+        'author': '123', 'comments': [] }];
+    const res = require('../controllers/mocks/res-req').getResponseMock();
+    const remove = (props) => {
+        const offerId = props._id.toString();
+        const index = offers.findIndex((i) => i._id.toString() === offerId);
+        offers.splice(index, 1);
+
+        return Promise.resolve(res.send('Success'));
+    };
+
+    describe('When offerId is valid', () => {
+        beforeEach(() => {
+           sinon.stub(db, 'collection').callsFake(() => {
+                return { remove };
+            });
+            data = getData(db, validator);
+        });
+
+        afterEach(() => {
+            db.collection.restore();
+        });
+
+        it('expect delete function to return correct message ',
+        (done) => {
+            data.delete(offer, id, res)
+                .then(() => {
+                    expect(res.body).to.deep.equal('Success');
                     done();
                 });
         });
