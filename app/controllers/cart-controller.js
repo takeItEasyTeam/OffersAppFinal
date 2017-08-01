@@ -17,10 +17,29 @@ module.exports = function(data) {
         },
         createOrder(req, res, cart) {
                 const order = req.body;
+
+                const arrayOfObjects = Object.keys(cart.items).map(key => {
+                    const ar = cart.items[key]
+
+                    // Apppend key if one exists (optional)
+                    ar.key = key
+
+                    return ar
+                })
+
                 order.user = req.user;
                 order.userId = req.user.id;
-                order.cart = cart;
                 order.date = new Date();
+                order.items = [];
+
+                arrayOfObjects.forEach(function(element) {
+                    order.items.push(element);
+                }, this);
+                //order.cart = arrayOfObjects;
+
+                order.price = cart.totalPrice;
+                order.quantity = cart.totalQty;
+         
 
                 return data.cart.createOrder(order)
                 .then((result) => {

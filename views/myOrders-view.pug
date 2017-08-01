@@ -21,13 +21,13 @@ block content
 
                 for item in context
                     - let orderDate = new Date(item.date);
-                    - ordersPrice += item.cart.totalPrice;
-                    - ordersCount += item.cart.totalQty;
+                    - ordersPrice += item.price;
+                    - ordersCount += item.quantity;
                     tr
                         td= item.id
                         td(class="text-center") #{moment(orderDate).format('MM/DD/YYYY')}
-                        td(class="text-center")= item.cart.totalQty
-                        td(class="text-center")= item.cart.totalPrice 
+                        td(class="text-center")= item.quantity
+                        td(class="text-center")= item.price 
                             span.text  лв.
                 tr(class="warning")
                     td(colspan="2")

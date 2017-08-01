@@ -58,6 +58,7 @@ module.exports = function(app, data) {
             res.redirect('/shoppingCart');
         })
         .post('/checkout', isLogin, function(req, res) {
+            console.log(req);
             const cart = new Cart(req.session.cart);
             return controller.createOrder(req, res, cart);
         });
