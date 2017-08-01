@@ -25,7 +25,7 @@ module.exports = function(data) {
                         const password = hash;
                             return data.users.create(username, password, firstName, lastName, email, phoneNumber, country, town, userPassword, response)
                                 .then(() => {
-                                    req.flash('success', 'You are now registered and can log in');
+                                    req.flash('success', 'Потребителят е регистриран успешно!');
                                     res.redirect('/login');
                                 })
                                 .catch((error) => {

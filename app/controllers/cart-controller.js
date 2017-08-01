@@ -18,7 +18,7 @@ module.exports = function(data) {
         createOrder(req, res, cart) {
                 const order = req.body;
 
-                const arrayOfObjects = Object.keys(cart.items).map(key => {
+                const arrayOfItems = Object.keys(cart.items).map(key => {
                     const ar = cart.items[key]
 
                     // Apppend key if one exists (optional)
@@ -32,10 +32,10 @@ module.exports = function(data) {
                 order.date = new Date();
                 order.items = [];
 
-                arrayOfObjects.forEach(function(element) {
+                arrayOfItems.forEach(function(element) {
                     order.items.push(element);
                 }, this);
-                //order.cart = arrayOfObjects;
+                //order.cart = arrayOfItems;
 
                 order.price = cart.totalPrice;
                 order.quantity = cart.totalQty;

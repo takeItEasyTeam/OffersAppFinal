@@ -5,12 +5,11 @@ const getData = (db, validator) => {
     const orders = db.collection('orders');
 
     function getOfferCount(id) {
+        orders.aggregate([{ $unwind: '$items' }]);
+        // TO DO!!!
         return 42;
     }
     return {
-        getOfferCount(id) {
-            return 42;
-        },
         getAll() {
             return collection.find({})
                 .toArray()
