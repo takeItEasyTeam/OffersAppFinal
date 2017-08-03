@@ -6,6 +6,9 @@ block content
     for item in context
       .col-md-3.col-sm-6.hero-feature.hvr-bob
         .thumbnail
+            span.discount
+                =item.discount
+                | %
             if item.files
                 if item.files[0]
                     img(src='/' + item.files[0].path, alt='')
@@ -23,7 +26,8 @@ block content
                 p Срок на офертата: #{moment(dateValid).format('DD/MM/YYYY HH:mm')}
                 p
                   if moment(dateValid).isBefore(moment())
-                    a.btn.btn-default.disabled(href='#/',type='button', data-id=item._id) Изтекла оферта
+                    a.btn.btn-default.disabled(href='#/',type='button', data-id=item._id) Изтекла
+                    a.btn.btn-primary(href="/" + item.id) Информация
                   else
                     a.btn.btn-primary(href="/" + item.id) Информация
                     a.btn.btn-success.buy(href='#/',type='button', data-id=item._id) Купи

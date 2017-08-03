@@ -89,6 +89,19 @@ footer {
     100% { transform: rotate(360deg); }
 }
 
+.discount{
+    background: url(../images/discount.png) no-repeat;
+    width: 75px;
+    padding-top: 15px;
+    height: 49px;
+    top: -15px;
+    left: -11px;
+    font-size: 15px;
+    text-align: left;
+    padding-left: 7px;
+    position: absolute;
+    color: white;
+}
 
 
 /* Float Shadow */
