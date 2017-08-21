@@ -1,7 +1,7 @@
 /* globals io $*/
 
 $(document).ready(function() {
-    const socket = io.connect('http://localhost:3001');
+    const socket = io.connect();
     // const socket = io.connect('http://35.158.65.13:3001/'); for AWS
 
     const textarea = $('#message');
