@@ -4,7 +4,9 @@ block content
     for item in context
       .col-md-3.col-sm-6.hero-feature.hvr-bob
         .thumbnail
-            span.discount=item.discount %
+            span.discount
+                =item.discount
+                | %
             if item.files
                 if item.files[0]
                     img(src='/' + item.files[0].path, alt='')
