@@ -19,10 +19,10 @@ block content
                 each file, index in context.files
                     if index == 0
                         .item.active
-                            img.img-responsive(src= '/' + file.path, alt='')
+                            img.img-responsive(src=file.url, alt='')
                     else 
                         .item
-                            img.img-responsive(src='/' + file.path, alt='')
+                            img.img-responsive(src=file.url, alt='')
             if context.files.length == 0
                 .item.active
                     img.img-responsive(src='https://ofertini.com/imgdata/336/kasno-lyato-kushadasa-turciya-noshtuvki-baza-426920.png', alt='')

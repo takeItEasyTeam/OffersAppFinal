@@ -3,8 +3,20 @@ const { Router } = require('express');
 const passport = require('passport');
 const { isLogin,
     frontRegisterUserValidation } = require('../utils/auth-validation');
+
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
-const upload = multer({ dest: 'static/images/users' }).array('image', 1);
+
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'OffersApp',
+  allowedFormats: ['jpg', 'png'],
+});
+
+const upload = multer({ storage: storage }).array('image', 1);
+
+//const upload = multer({ dest: 'static/images/users' }).array('image', 1);
 
 module.exports = function(app, data) {
     const controller = require('../controllers/user-controller')(data);

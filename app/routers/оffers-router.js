@@ -1,9 +1,19 @@
 const { Router } = require('express');
 const passport = require('passport');
 const { isLogin } = require('../utils/auth-validation');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
-const upload = multer({ dest: 'static/images' }).array('image', 3);
 
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'OffersApp',
+  allowedFormats: ['jpg', 'png'],
+});
+
+const upload = multer({ storage: storage }).array('image', 3);
+
+// const upload = multer({ dest: 'static/images' }).array('image', 3);npm install cloudinary
 
 module.exports = function(app, data) {
     const controller = require('../controllers/offers-controller')(data);
